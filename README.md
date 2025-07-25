@@ -42,7 +42,7 @@ _Автоматизированые системы управления доро
 
 Расширения:
 - plpgsql
-- hstore
+- hstore 
 - pg_cron
 - pgrouting
 - postgis
@@ -118,6 +118,7 @@ _Глобальное позиционирование / локальное пр
 | id          | SERIAL                   | Идентификатор геометрии     |
 | object_id   | INTEGER                  | Идентификатор обьекта       |
 | geometry    | GEOMETRY                 | Геометрическая сущность     |
+| angle       | DOUBLE PRECISION         | Наклон по карте (радианы)   |
 
 - `<object_id>` ссылается на запись в `table:objects` MANY-TO-ONE
 - выполняется условие уникальности (`<object_id>`, `<geometry>`)
@@ -131,8 +132,8 @@ _Глобальное позиционирование / локальное пр
 | buffer      | BYTEA                    | Бинарный буфер изображения  |
 | axis_width  | DECIMAL / INTEGER        | Расчетная ширина сетки      |
 | axis_height | DECIMAL / INTEGER        | Расчетная высота сетки      |
-| scale       | DECIMAL / INTEGER        | Коеф масштаба по карте      |
-| angle       | DECIMAL / INTEGER        | Наклон по карте (радианы)   |
+| scale       | DOUBLE PRECISION         | Коеф масштаба по карте      |
+| angle       | DOUBLE PRECISION         | Наклон по карте (радианы)   |
 
 - `<object_id>` ссылается на запись в `table:objects` MANY-TO-ONE
 - выполняется условие уникальности (`<object_id>`, `<buffer>`)
@@ -210,6 +211,8 @@ _префикс /api_
 
 - Источник геоданных - [geofabrik](https://download.geofabrik.de/europe/ukraine.html)
 
+- Источник данных управления - [АСУДД-v1](#) 
+
 - Область тестовой интеграции - [OpenStreedMap area](https://map.project-osrm.org/?z=16&center=50.443711%2C30.510782&loc=50.448227%2C30.483134&loc=50.443499%2C30.512295&loc=50.442211%2C30.520057&hl=en&alt=0&srv=0
 )
 
@@ -229,6 +232,10 @@ osmosis --read-bin ukraine-map.osm.pbf --write-xml - | osm2pgsql --slim -d <dbna
 
 ## Дайджест
 
+| [+] - выполнено
+| [~] - в процессе
+| [@] - в планах
+
 - Структура базы данных [~]
 
     - Базовые атрибуты [+]
@@ -243,13 +250,13 @@ osmosis --read-bin ukraine-map.osm.pbf --write-xml - | osm2pgsql --slim -d <dbna
     - Светофоры [+]
     - Направления [~]
 
-- Адаптация направлений под гео маршрутизацию [~]
+- Адаптация направлений под гео маршрутизацию [@]
 
-- Имплементация SFCGAL для адаптера базы данных [~]
+- Имплементация SFCGAL для адаптера базы данных [@]
 
     _позволит хранить кривую/плавную геометрию в `GEOMETRY`_
 
-- Интеграция Swagger к API сервису [~]
+- Интеграция Swagger к API сервису [@]
 
     _позволит структурировано описывать сервис под `OPENAPI` стандарт_
 
