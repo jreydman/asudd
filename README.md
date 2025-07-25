@@ -203,7 +203,7 @@ _префікс /api_
 
 ---
 
-## Источники
+## Джерела
 
 - Інструмент імплементації карт у базу даних - [osm2pgsql](https://osm2pgsql.org/doc/manual.html#introduction)
 
@@ -230,7 +230,7 @@ osmosis --read-bin ukraine-map.osm.pbf --write-xml - | osm2pgsql --slim -d <dbna
 
 ---
 
-## Дайджест
+## Хід виконання
 
 [+] - виконано
 [~] - в процесі
