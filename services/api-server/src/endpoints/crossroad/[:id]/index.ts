@@ -1,4 +1,4 @@
-import getCrossroadById from "src/endpoints/crossroads/[:id]/fetchCrossroadById";
+import fetchCrossroadById from "src/utils/fetchCrossroadById";
 
 export default async function getCrossroadByIdEndpoint(request: any) {
   const id = request.params.id;
@@ -8,7 +8,7 @@ export default async function getCrossroadByIdEndpoint(request: any) {
   }
 
   try {
-    const crossroad = await getCrossroadById(id);
+    const crossroad = await fetchCrossroadById(id);
 
     if (!crossroad)
       return Response.json({ error: "Crossroad not found" }, { status: 404 });

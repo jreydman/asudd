@@ -1,6 +1,6 @@
 import type { Position } from "geojson";
 
-export default function drawCanvasArrowPoint(
+export default function drawCanvasPointArrow(
   canvas_context: CanvasRenderingContext2D,
   imgWidth: number,
   imgHeight: number,

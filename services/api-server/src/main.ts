@@ -1,7 +1,7 @@
+import getCrossroadLocationsEndpoint from "@srcendpoints/crossroad/location/index";
+import getCrossroadByIdEndpoint from "src/endpoints/crossroad/[:id]/index";
+import getObjectsByCrossroadIdEndpoint from "src/endpoints/crossroad/[:id]/object/index";
 import { serve } from "bun";
-import getCrossroadByIdEndpoint from "src/endpoints/crossroads/[:id]/index";
-import getCrossroadPointsEndpoint from "src/endpoints/crossroads/points/index";
-import getObjectsByCrossroadIdEndpoint from "src/endpoints/crossroads/[:id]/objects/index";
 
 const PORT = Number(process.env.APISERVER_PORT ?? 3001);
 
@@ -11,8 +11,8 @@ serve({
 
   routes: {
     "/crossroad/:id": getCrossroadByIdEndpoint,
-    "/crossroad/:id/objects": getObjectsByCrossroadIdEndpoint,
-    "/crossroad/points": getCrossroadPointsEndpoint,
+    "/crossroad/:id/object": getObjectsByCrossroadIdEndpoint,
+    "/crossroad/location": getCrossroadLocationsEndpoint,
   },
 
   fetch() {

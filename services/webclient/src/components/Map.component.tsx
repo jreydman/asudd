@@ -1,5 +1,4 @@
 import useMapStore from "@src/store/useMapStore";
-import useQueryCrossroadPoints from "@src/utils/useQueryCrossroadPoints";
 import React from "react";
 import {
   Map as MapLibre,
@@ -8,7 +7,8 @@ import {
   GeolocateControl,
   Marker,
 } from "react-map-gl/maplibre";
-import CrossroadMapArea from "./CrossroadMapArea";
+import CrossroadMapEntry from "@components/Crossroad/CrossroadMapEntry.component";
+import useQueryCrossroadLocations from "@src/utils/useQueryCrossroadLocations";
 
 const MAPSTYLE = "https://tiles.stadiamaps.com/styles/osm_bright.json";
 
@@ -16,7 +16,7 @@ export default function Map() {
   const mapViewState = useMapStore((state) => state.mapViewState);
   const setMapViewState = useMapStore((state) => state.setMapViewState);
 
-  const { data: crossroadPoints } = useQueryCrossroadPoints();
+  const { data: crossroadLocations } = useQueryCrossroadLocations();
 
   // Map controls ----------------------------------------------------------------
 
@@ -41,18 +41,16 @@ export default function Map() {
       >
         {/** Map controls */}
         <GeolocateControl />
-        {crossroadPoints &&
-          crossroadPoints.map((crossroadPoint) => {
+        {crossroadLocations &&
+          crossroadLocations.map((crossroadLocation) => {
             return (
               <Marker
-                key={crossroadPoint.id}
-                longitude={crossroadPoint.geometry.coordinates[0]}
-                latitude={crossroadPoint.geometry.coordinates[1]}
-                color="blue"
-                anchor="center"
-                rotation={15}
+                key={crossroadLocation.id}
+                longitude={crossroadLocation.geometry.coordinates[0]}
+                latitude={crossroadLocation.geometry.coordinates[1]}
+                rotation={crossroadLocation.angle}
               >
-                <CrossroadMapArea crossroad_id={crossroadPoint.id} />
+                <CrossroadMapEntry crossroad_id={crossroadLocation.id} />
               </Marker>
             );
           })}

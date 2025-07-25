@@ -1,4 +1,4 @@
-import getObjectsByCrossroadId from "src/endpoints/crossroads/[:id]/objects/fetchObjectsByCrossroadId";
+import fetchObjectsByCrossroadId from "@srcutils/fetchObjectsByCrossroadId";
 
 export default async function getObjectsByCrossroadIdEndpoint(request: any) {
   const id = request.params.id;
@@ -8,7 +8,7 @@ export default async function getObjectsByCrossroadIdEndpoint(request: any) {
   }
 
   try {
-    const objects = await getObjectsByCrossroadId(id);
+    const objects = await fetchObjectsByCrossroadId(id);
 
     return Response.json(objects);
   } catch (err) {

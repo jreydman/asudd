@@ -1,27 +1,27 @@
 import useQueryCrossroadById from "@src/utils/useQueryCrossroadById";
-import CrossroadPicture from "@src/components/CrossroadPicture";
+import CrossroadMapEntryPicture from "@src/components/Crossroad/CrossroadMapEntryPicture.component";
 import { useMap } from "react-map-gl/maplibre";
 import { useEffect, useState } from "react";
+import useQueryObjectsByCrossroadId from "@src/utils/useQueryObjectsByCrossroadId";
 
 type CrossroadMapAreaProps = {
   crossroad_id: number;
 };
 
-export default function CrossroadMapArea({
+export default function CrossroadMapEntry({
   crossroad_id,
 }: CrossroadMapAreaProps) {
   const { data: crossroad } = useQueryCrossroadById(crossroad_id);
+  const { data: crossroadObjects } = useQueryObjectsByCrossroadId(crossroad_id);
   const { current: map } = useMap();
   const [scale, setScale] = useState(1);
 
   useEffect(() => {
     if (!map || !crossroad) return;
 
-    console.info(crossroad);
-
     const updateScale = () => {
       const currentZoom = map.getZoom();
-      setScale(Math.pow(2, currentZoom - crossroad.scale));
+      setScale(Math.pow(2, currentZoom - crossroad.picture.scale));
     };
 
     map.on("zoom", updateScale);
@@ -42,7 +42,10 @@ export default function CrossroadMapArea({
         display: "inline-block",
       }}
     >
-      <CrossroadPicture crossroad={crossroad} />
+      <CrossroadMapEntryPicture
+        crossroad={crossroad}
+        crossroadObjects={crossroadObjects}
+      />
     </div>
   );
 }

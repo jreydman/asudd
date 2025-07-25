@@ -1,9 +1,6 @@
-import fetchCrossroadPoints from "@src/utils/fetchCrossroadPoints";
-import Map from "./Map";
+import Map from "@components/Map.component";
 
 export default function Main() {
-  fetchCrossroadPoints();
-
   return (
     <main>
       {/** ---------------------------- */}
