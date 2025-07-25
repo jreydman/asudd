@@ -48,7 +48,7 @@ _Автоматизовані системи управління дорожні
 - postgis
 - postgis_raster
 - postgis_topology
-- postgis_sfcgal?   (див. [Хід виконання](#хід-виконання))
+- postgis_sfcgal?   (див. [Стан виконання](#стан-виконання))
 
 #### Об'єкт [table:objects]
 
@@ -230,7 +230,7 @@ osmosis --read-bin ukraine-map.osm.pbf --write-xml - | osm2pgsql --slim -d <dbna
 
 ---
 
-## Хід виконання
+## Стан виконання
 
 [+] - виконано
 [~] - в процесі
