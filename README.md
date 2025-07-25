@@ -259,3 +259,11 @@ _дозволить структуровано описувати сервіс �
 ...
 
 ---
+
+## Концепт
+
+![crossroad_ID_inter_state](./docs/test_crossroad [ID]/test_crossroad [ID]_program1_inter.png)
+
+![crossroad_ID_program1_phace1_state](./docs/test_crossroad [id]/test_crossroad [id]_program1_phace1.png)
+
+![crossroad_ID_program1_phace2_state](./docs/test_crossroad [id]/test_crossroad [id]_program1_phace2.png)
