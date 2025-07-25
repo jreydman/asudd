@@ -1,0 +1,8 @@
+.DS_Store
+node_modules/
+docs/АСУДД_*
+docs/ОДР*
+.env
+.venv/
+__pycache__/
+data/

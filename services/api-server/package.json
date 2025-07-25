@@ -1,0 +1,14 @@
+{
+  "name": "@traffic-lights/api-server",
+  "type": "module",
+  "scripts": {
+    "dev": "bun --bun run --hot src/main.ts"
+  },
+  "files": [
+    "src"
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "@types/bun": "^1.2.19"
+  }
+}

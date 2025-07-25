@@ -1,0 +1,23 @@
+@import "tailwindcss";
+@import "maplibre-gl/dist/maplibre-gl.css";
+
+#root {
+  @apply h-screen flex flex-col;
+
+  header,
+  footer {
+    @apply w-full bg-blue-200;
+  }
+
+  main {
+    @apply flex-1;
+
+    section {
+      @apply h-full;
+
+      .map-container {
+        @apply h-full w-full;
+      }
+    }
+  }
+}

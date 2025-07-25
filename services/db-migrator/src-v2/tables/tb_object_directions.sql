@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS object_directions (
+  id    INTEGER NOT NULL,
+
+  PRIMARY KEY (id),
+  FOREIGN KEY (id) REFERENCES objects(id) ON DELETE CASCADE
+);
