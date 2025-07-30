@@ -1,37 +1,66 @@
 SQL_CONFIG = "host=localhost port=5432 dbname=assud user=admin password=admin"
 
-PSQL = psql -d $(SQL_CONFIG)
-DUMP = pg_dump -d $(SQL_CONFIG) --schema-only
+PGQUERY = psql -d $(SQL_CONFIG)
+PGDUMP = pg_dump -d $(SQL_CONFIG) --schema-only
 
-VERSION = 1
+SQL_DIR = ./src-v2
 
 clear:
 	@clear
 
-# V1 ---------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
-up: clear
-	@$(PSQL) -f ./src-${VERSION}/tables/tb_crossroads.sql
-	@$(PSQL) -f ./src-${VERSION}/tables/tb_crossroad_objects.sql
-	@$(PSQL) -f ./src-${VERSION}/tables/tb_crossroad_ports.sql
-	@$(PSQL) -f ./src-${VERSION}/tables/tb_crossroad_signals.sql
-	@$(PSQL) -f ./src-${VERSION}/tables/tb_port_connections.sql
-	@$(PSQL) -f ./src-${VERSION}/tables/tb_crossroad_signal_connection_controls.sql
-	@$(PSQL) -f ./src-${VERSION}/tables/tb_crossroad_object_geometries.sql
-	@$(PSQL) -f ./src-${VERSION}/functions/func__set_updated_at_timestamp.sql
-	@$(PSQL) -f ./src-${VERSION}/functions/func__add_crossroad_port.sql
-	@$(PSQL) -f ./src-${VERSION}/functions/func__add_crossroad_signal.sql
-	@$(PSQL) -f ./src-${VERSION}/functions/func__add_port_connection.sql
-	@$(PSQL) -f ./src-${VERSION}/functions/tfunc__create_internal_connections.sql
-	@$(PSQL) -f ./src-${VERSION}/triggres.sql
+up: clear combine
+	@$(PGQUERY) -f ${SQL_DIR}/up.sql
 
 down: clear
-	@$(PSQL) -f ./src-${VERSION}/down.sql
+	@$(PGQUERY) -f ${SQL_DIR}/down.sql
 
 seed: clear
-	@$(PSQL) -f ./src-${VERSION}/seed.sql
+	@$(PGQUERY) -f ${SQL_DIR}/seed.sql
 
-# V2 ---------------------------------------------------------------------------
+# ------------------------------------------------------------------------------
+
+combine:
+	@echo "-- Combined SQL file generated on $(shell date)" > ${SQL_DIR}/up.sql
+	@echo "" >> ${SQL_DIR}/up.sql
+
+	@cat ${SQL_DIR}/tables/tb_objects.sql >> ${SQL_DIR}/up.sql
+	@echo "" >> ${SQL_DIR}/up.sql
+
+	@cat ${SQL_DIR}/tables/tb_object_crossroads.sql >> ${SQL_DIR}/up.sql
+	@echo "" >> ${SQL_DIR}/up.sql
+
+	@cat ${SQL_DIR}/tables/tb_object_signals.sql >> ${SQL_DIR}/up.sql
+	@echo "" >> ${SQL_DIR}/up.sql
+
+	@cat ${SQL_DIR}/tables/tb_object_directions.sql >> ${SQL_DIR}/up.sql
+	@echo "" >> ${SQL_DIR}/up.sql
+
+	@cat ${SQL_DIR}/tables/tb_object_gateways.sql >> ${SQL_DIR}/up.sql
+	@echo "" >> ${SQL_DIR}/up.sql
+
+	@cat ${SQL_DIR}/tables/tb_object_geometries.sql >> ${SQL_DIR}/up.sql
+	@echo "" >> ${SQL_DIR}/up.sql
+
+	@cat ${SQL_DIR}/tables/tb_object_pictures.sql >> ${SQL_DIR}/up.sql
+	@echo "" >> ${SQL_DIR}/up.sql
+
+	@cat ${SQL_DIR}/tables/tb_object_dependencies.sql >> ${SQL_DIR}/up.sql
+	@echo "" >> ${SQL_DIR}/up.sql
+
+	@cat ${SQL_DIR}/functions/tfunc__set_updated_at.sql >> ${SQL_DIR}/up.sql
+	@echo "" >> ${SQL_DIR}/up.sql
+
+	@cat ${SQL_DIR}/functions/tfunc__validate_object_type_auto.sql >> ${SQL_DIR}/up.sql
+	@echo "" >> ${SQL_DIR}/up.sql
+
+	@cat ${SQL_DIR}/functions/func__add_crossroad.sql >> ${SQL_DIR}/up.sql
+	@echo "" >> ${SQL_DIR}/up.sql
+
+	@cat ${SQL_DIR}/triggers.sql >> ${SQL_DIR}/up.sql
+
+	@echo "Combined SQL file created at ${SQL_DIR}/up.sql"
 
 # ------------------------------------------------------------------------------
 

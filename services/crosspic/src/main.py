@@ -1,14 +1,17 @@
-from dumper import dump_pictures_from_csv
-from bmp import read_bmp
-from bmp_mark import bmp_mark
-from codec import codec
+from methods.gen_database_seed import seed
+from methods.print_row import print_row
+from methods.run_query import run_query
+
 # ------------------------------------------------------------------------------
 
 def main():
-    # dump_pictures_from_csv()
-    # read_bmp()
-    # bmp_mark()
-    codec()
+    perinf_seed_query_array = seed()
+
+
+    for perinf_seed_query in perinf_seed_query_array:
+        run_query(perinf_seed_query)
+
+    print_row()
 
 # ------------------------------------------------------------------------------
 

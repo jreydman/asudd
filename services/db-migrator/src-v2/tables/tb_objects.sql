@@ -1,7 +1,8 @@
 CREATE TYPE OBJECT_TYPE AS ENUM (
   'crossroad',
   'signal',
-  'direction'
+  'direction',
+  'gateway'
 );
 
 CREATE TABLE IF NOT EXISTS objects (
@@ -16,3 +17,5 @@ CREATE TABLE IF NOT EXISTS objects (
 
   PRIMARY KEY (id)
 );
+
+COMMENT ON COLUMN objects.attributes IS 'example { "is_dashed_direction": true }';

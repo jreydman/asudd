@@ -1,10 +1,18 @@
-export default function drawCanvasGrid(
-  canvas_context: CanvasRenderingContext2D,
-  imgWidth: number,
-  imgHeight: number,
-  axisWidth: number,
-  axisHeight: number,
-) {
+type DrawCanvasGridOptions = {
+  canvas_context: CanvasRenderingContext2D;
+  imgWidth: number;
+  imgHeight: number;
+  axisWidth: number;
+  axisHeight: number;
+};
+
+export default function drawCanvasGrid({
+  canvas_context,
+  imgWidth,
+  imgHeight,
+  axisWidth,
+  axisHeight,
+}: DrawCanvasGridOptions) {
   const gridColor = "#FF0000";
   const textColor = "#FFFF00";
 

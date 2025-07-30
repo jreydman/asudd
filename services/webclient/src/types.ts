@@ -37,11 +37,13 @@ export type CROSSROAD = {
 
 export type OBJECT_CLASS_SIGNAL = {
   type: OBJECT_TYPE.Signal;
+  attributes: { [key: string]: any };
   geometry: Point & { angle: number };
 };
 
 export type OBJECT_CLASS_DIRECTION = {
   type: OBJECT_TYPE.Direction;
+  attributes: { [key: string]: any };
   geometry: LineString & { angle: number };
 };
 

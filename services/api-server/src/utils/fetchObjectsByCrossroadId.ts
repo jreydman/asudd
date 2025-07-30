@@ -3,12 +3,13 @@ import sql from "src/sql";
 export default async function fetchObjectsByCrossroadId(crossroad_id: number) {
   const objects = await sql`
     WITH input_params (crossroad_id) AS (
-        VALUES (${crossroad_id}::integer)
+        VALUES (${crossroad_id}::INTEGER)
     )
     
     SELECT 
         objects.id,
         objects.type,
+        objects.attributes,
         object_signals.standard,
         object_signals.kind,
     	  ST_AsGeoJSON(object_geometries.geometry) AS geometry,
@@ -23,16 +24,14 @@ export default async function fetchObjectsByCrossroadId(crossroad_id: number) {
       AND object_geometries.geotype = 'local'
     `;
 
-  if (!objects[0].id) return [];
+  if (!objects[0]) return [];
 
   return objects.map((object) => {
     if (object.geometry) {
       object.geometry = JSON.parse(object.geometry);
+      object.geometry.angle = object.geometry_angle;
+      delete object.geometry_angle;
     }
-
-    object.geometry.angle = object.geometry_angle;
-
-    delete object.geometry_angle;
 
     return object;
   });

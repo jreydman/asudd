@@ -1,11 +1,11 @@
 CREATE TYPE OBJECT_SIGNAL_KIND AS ENUM (
-  'traffic'
+  'traffic',
   'pedestrian'
 );
 
 CREATE TYPE OBJECT_SIGNAL_STANDARD AS ENUM (
   't1.1',
-  't1.2',
+  't1.2'
 );
 
 CREATE TABLE IF NOT EXISTS object_signals (
@@ -18,4 +18,4 @@ CREATE TABLE IF NOT EXISTS object_signals (
   FOREIGN KEY (id) REFERENCES objects(id) ON DELETE CASCADE
 );
 
-COMMENT ON COLUMN object_signals.standard IS 'ДСТУ тип стантарта светофоров';
+COMMENT ON COLUMN object_signals.standard IS 'ДСТУ тип стандарта світлофорів';

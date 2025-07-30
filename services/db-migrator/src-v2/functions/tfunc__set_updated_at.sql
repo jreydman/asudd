@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION set_updated_at()
+CREATE OR REPLACE FUNCTION tfunc__set_updated_at()
 RETURNS TRIGGER AS $$
 BEGIN
   NEW.updated_at := CURRENT_TIMESTAMP;

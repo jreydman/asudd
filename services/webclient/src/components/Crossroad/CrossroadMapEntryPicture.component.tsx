@@ -35,39 +35,41 @@ export default function CrossroadMapEntryPicture({
 
       canvas_context.drawImage(img, 0, 0);
 
-      drawCanvasGrid(
+      drawCanvasGrid({
         canvas_context,
-        originalWidth,
-        originalHeight,
+        imgWidth: originalWidth,
+        imgHeight: originalHeight,
         axisWidth,
         axisHeight,
-      );
+      });
+
+      console.log(crossroadObjects);
 
       crossroadObjects.forEach((object) => {
-        console.log(object);
         switch (object.type) {
           case OBJECT_TYPE.Signal: {
-            drawCanvasPointArrow(
+            drawCanvasPointArrow({
               canvas_context,
-              originalWidth,
-              originalHeight,
+              imgWidth: originalWidth,
+              imgHeight: originalHeight,
               axisWidth,
               axisHeight,
-              object.geometry.coordinates,
-              object.geometry.angle,
-            );
+              point: object.geometry.coordinates,
+              angle: object.geometry.angle,
+            });
             break;
           }
           case OBJECT_TYPE.Direction: {
-            drawCanvasVectorLineArrow(
+            drawCanvasVectorLineArrow({
               canvas_context,
-              originalWidth,
-              originalHeight,
+              imgWidth: originalWidth,
+              imgHeight: originalHeight,
               axisWidth,
               axisHeight,
-              object.geometry.coordinates,
-              object.geometry.angle,
-            );
+              vector: object.geometry.coordinates,
+              angle: object.geometry.angle,
+              is_solid: !object.attributes.is_second_direction,
+            });
             break;
           }
         }

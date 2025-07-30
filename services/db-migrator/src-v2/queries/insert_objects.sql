@@ -50,3 +50,25 @@ insert_signal AS (
 INSERT INTO object_dependencies (master_id, slave_id)
 SELECT input_signal_params.crossroad_id, new_object_signal.id
 FROM input_signal_params, new_object_signal;
+
+--------------------------------------------------------------------------------
+
+WITH input_gateway_params(crossroad_id, is_inbound, is_outbound) AS (
+    VALUES (1::INTEGER, TRUE, FALSE)
+),
+new_object_gateway AS (
+    INSERT INTO objects (type)
+    VALUES ('gateway'::OBJECT_TYPE)
+    RETURNING *
+),
+insert_gateway AS (
+    INSERT INTO object_gateways (id, is_inbound, is_outbound)
+    SELECT new_object_gateway.id,
+           input_gateway_params.is_inbound,
+          input_gateway_params.is_outbound
+    FROM new_object_gateway, input_gateway_params
+)
+INSERT INTO object_dependencies (master_id, slave_id)
+SELECT input_gateway_params.crossroad_id, new_object_gateway.id
+FROM input_gateway_params, new_object_gateway;
+
