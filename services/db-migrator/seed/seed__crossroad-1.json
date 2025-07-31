@@ -3,11 +3,8 @@
   "geometry": [
     {
       "geotype": "global",
-      "figure": {
-        "type": "Point",
-        "coordinates": [30.512462, 50.4436],
-        "angle": 13.5
-      }
+      "figure": { "type": "Point", "coordinates": [30.512462, 50.4436] },
+      "angle": 13.5
     }
   ],
   "picture": {
@@ -18,26 +15,67 @@
   },
   "objects": [
     {
+      "type": "signal",
+      "kind": ["traffic"],
+      "geometry": [
+        {
+          "geotype": "local",
+          "figure": { "type": "Point", "coordinates": [3328, 361] },
+          "angle": 11
+        }
+      ]
+    },
+    {
+      "type": "signal",
+      "kind": ["traffic"],
+      "geometry": [
+        {
+          "geotype": "local",
+          "figure": { "type": "Point", "coordinates": [7143, 1935] }
+        }
+      ]
+    },
+
+    {
+      "type": "signal",
+      "kind": ["traffic"],
+      "geometry": [
+        {
+          "geotype": "local",
+          "figure": { "type": "Point", "coordinates": [716, 4374] },
+          "angle": 3
+        }
+      ]
+    },
+
+    {
+      "type": "signal",
+      "kind": ["traffic"],
+      "geometry": [
+        {
+          "geotype": "local",
+          "figure": { "type": "Point", "coordinates": [4892, 5818] },
+          "angle": 1.5
+        }
+      ]
+    },
+
+    {
       "type": "gateway",
       "is_inbound": true,
       "is_outbound": false,
       "geometry": [
         {
           "geotype": "global",
-          "figure": {
-            "type": "Point",
-            "coordinates": [30.5125862, 50.4439463]
-          }
+          "figure": { "type": "Point", "coordinates": [30.5125862, 50.4439463] }
         },
         {
           "geotype": "local",
-          "figure": {
-            "type": "Point",
-            "coordinates": [3328, 113]
-          }
+          "figure": { "type": "Point", "coordinates": [3328, 113] }
         }
       ]
     },
+
     {
       "type": "gateway",
       "is_inbound": false,
@@ -59,6 +97,7 @@
         }
       ]
     },
+
     {
       "type": "gateway",
       "is_inbound": true,
@@ -80,6 +119,7 @@
         }
       ]
     },
+
     {
       "type": "gateway",
       "is_inbound": false,
@@ -101,6 +141,7 @@
         }
       ]
     },
+
     {
       "type": "gateway",
       "is_inbound": true,
@@ -122,6 +163,7 @@
         }
       ]
     },
+
     {
       "type": "gateway",
       "is_inbound": false,
@@ -143,6 +185,7 @@
         }
       ]
     },
+
     {
       "type": "gateway",
       "is_inbound": true,
@@ -164,6 +207,7 @@
         }
       ]
     },
+
     {
       "type": "gateway",
       "is_inbound": false,

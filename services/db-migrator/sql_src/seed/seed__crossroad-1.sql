@@ -8,144 +8,81 @@ INSERT INTO object_pictures (
   7920, 6195,
   18.5, 0
 );
-INSERT INTO object_geometries (
-  object_id, geotype, figure, angle
-) VALUES (
-  1, 'global', ST_GeomFromWKB('\x01010000005871AAB530833E40B84082E2C7384940', 4326), 13.5
-);
-INSERT INTO objects (id, type) VALUES (2, 'gateway');
-INSERT INTO object_gateways (
-  id, is_inbound, is_outbound
-) VALUES (
-  2, TRUE, FALSE
-);
+INSERT INTO object_geometries (object_id, geotype, figure, angle)
+VALUES (1, 'global', ST_GeomFromWKB('\x01010000005871AAB530833E40B84082E2C7384940', 4326), 13.5);
+INSERT INTO objects (id, type) VALUES (2, 'signal');
+INSERT INTO object_signals (id, standard, kind) VALUES (2, NULL, ARRAY['traffic']::OBJECT_SIGNAL_KIND[]);
 INSERT INTO object_dependencies (master_id, slave_id) VALUES (1, 2);
-INSERT INTO object_geometries (
-  object_id, geotype, figure
-) VALUES (
-  2, 'global', ST_GeomFromWKB('\x0101000000846165D938833E4011D77B3BD3384940', 4326)
-);
-INSERT INTO object_geometries (
-  object_id, geotype, figure
-) VALUES (
-  2, 'local', ST_GeomFromWKB('\x0101000000000000000000AA400000000000405C40', 4326)
-);
-INSERT INTO objects (id, type) VALUES (3, 'gateway');
-INSERT INTO object_gateways (
-  id, is_inbound, is_outbound
-) VALUES (
-  3, FALSE, TRUE
-);
+INSERT INTO object_geometries (object_id, geotype, figure, angle)
+VALUES (2, 'local', ST_GeomFromWKB('\x0101000000000000000000AA400000000000907640', 4326), 11);
+INSERT INTO objects (id, type) VALUES (3, 'signal');
+INSERT INTO object_signals (id, standard, kind) VALUES (3, NULL, ARRAY['traffic']::OBJECT_SIGNAL_KIND[]);
 INSERT INTO object_dependencies (master_id, slave_id) VALUES (1, 3);
-INSERT INTO object_geometries (
-  object_id, geotype, figure
-) VALUES (
-  3, 'global', ST_GeomFromWKB('\x0101000000846165D938833E4011D77B3BD3384940', 4326)
-);
-INSERT INTO object_geometries (
-  object_id, geotype, figure
-) VALUES (
-  3, 'local', ST_GeomFromWKB('\x0101000000000000000039B3400000000000405C40', 4326)
-);
-INSERT INTO objects (id, type) VALUES (4, 'gateway');
-INSERT INTO object_gateways (
-  id, is_inbound, is_outbound
-) VALUES (
-  4, TRUE, FALSE
-);
+INSERT INTO object_geometries (object_id, geotype, figure)
+VALUES (3, 'local', ST_GeomFromWKB('\x01010000000000000000E7BB4000000000003C9E40', 4326));
+INSERT INTO objects (id, type) VALUES (4, 'signal');
+INSERT INTO object_signals (id, standard, kind) VALUES (4, NULL, ARRAY['traffic']::OBJECT_SIGNAL_KIND[]);
 INSERT INTO object_dependencies (master_id, slave_id) VALUES (1, 4);
-INSERT INTO object_geometries (
-  object_id, geotype, figure
-) VALUES (
-  4, 'global', ST_GeomFromWKB('\x010100000050EDC2C540833E40FEE60F17CA384940', 4326)
-);
-INSERT INTO object_geometries (
-  object_id, geotype, figure
-) VALUES (
-  4, 'local', ST_GeomFromWKB('\x01010000000000000000EEBC400000000000889D40', 4326)
-);
-INSERT INTO objects (id, type) VALUES (5, 'gateway');
-INSERT INTO object_gateways (
-  id, is_inbound, is_outbound
-) VALUES (
-  5, FALSE, TRUE
-);
+INSERT INTO object_geometries (object_id, geotype, figure, angle)
+VALUES (4, 'local', ST_GeomFromWKB('\x01010000000000000000608640000000000016B140', 4326), 3);
+INSERT INTO objects (id, type) VALUES (5, 'signal');
+INSERT INTO object_signals (id, standard, kind) VALUES (5, NULL, ARRAY['traffic']::OBJECT_SIGNAL_KIND[]);
 INSERT INTO object_dependencies (master_id, slave_id) VALUES (1, 5);
-INSERT INTO object_geometries (
-  object_id, geotype, figure
-) VALUES (
-  5, 'global', ST_GeomFromWKB('\x0101000000B4322B2515833E4073DDEFABCD384940', 4326)
-);
-INSERT INTO object_geometries (
-  object_id, geotype, figure
-) VALUES (
-  5, 'local', ST_GeomFromWKB('\x01010000000000000000807D40000000000068A140', 4326)
-);
+INSERT INTO object_geometries (object_id, geotype, figure, angle)
+VALUES (5, 'local', ST_GeomFromWKB('\x010100000000000000001CB3400000000000BAB640', 4326), 1.5);
 INSERT INTO objects (id, type) VALUES (6, 'gateway');
-INSERT INTO object_gateways (
-  id, is_inbound, is_outbound
-) VALUES (
-  6, TRUE, FALSE
-);
+INSERT INTO object_gateways (id, is_inbound, is_outbound) VALUES (6, TRUE, FALSE);
 INSERT INTO object_dependencies (master_id, slave_id) VALUES (1, 6);
-INSERT INTO object_geometries (
-  object_id, geotype, figure
-) VALUES (
-  6, 'global', ST_GeomFromWKB('\x0101000000A41B615111833E40CA83995BC6384940', 4326)
-);
-INSERT INTO object_geometries (
-  object_id, geotype, figure
-) VALUES (
-  6, 'local', ST_GeomFromWKB('\x01010000000000000000807D400000000000B2B040', 4326)
-);
+INSERT INTO object_geometries (object_id, geotype, figure)
+VALUES (6, 'global', ST_GeomFromWKB('\x0101000000846165D938833E4011D77B3BD3384940', 4326));
+INSERT INTO object_geometries (object_id, geotype, figure)
+VALUES (6, 'local', ST_GeomFromWKB('\x0101000000000000000000AA400000000000405C40', 4326));
 INSERT INTO objects (id, type) VALUES (7, 'gateway');
-INSERT INTO object_gateways (
-  id, is_inbound, is_outbound
-) VALUES (
-  7, FALSE, TRUE
-);
+INSERT INTO object_gateways (id, is_inbound, is_outbound) VALUES (7, FALSE, TRUE);
 INSERT INTO object_dependencies (master_id, slave_id) VALUES (1, 7);
-INSERT INTO object_geometries (
-  object_id, geotype, figure
-) VALUES (
-  7, 'global', ST_GeomFromWKB('\x01010000007C98BD6C3B833E40C600E4DFC2384940', 4326)
-);
-INSERT INTO object_geometries (
-  object_id, geotype, figure
-) VALUES (
-  7, 'local', ST_GeomFromWKB('\x01010000000000000000EEBC400000000000B2B040', 4326)
-);
+INSERT INTO object_geometries (object_id, geotype, figure)
+VALUES (7, 'global', ST_GeomFromWKB('\x0101000000846165D938833E4011D77B3BD3384940', 4326));
+INSERT INTO object_geometries (object_id, geotype, figure)
+VALUES (7, 'local', ST_GeomFromWKB('\x0101000000000000000039B3400000000000405C40', 4326));
 INSERT INTO objects (id, type) VALUES (8, 'gateway');
-INSERT INTO object_gateways (
-  id, is_inbound, is_outbound
-) VALUES (
-  8, TRUE, FALSE
-);
+INSERT INTO object_gateways (id, is_inbound, is_outbound) VALUES (8, TRUE, FALSE);
 INSERT INTO object_dependencies (master_id, slave_id) VALUES (1, 8);
-INSERT INTO object_geometries (
-  object_id, geotype, figure
-) VALUES (
-  8, 'global', ST_GeomFromWKB('\x010100000033164D6727833E40BD5065BDBD384940', 4326)
-);
-INSERT INTO object_geometries (
-  object_id, geotype, figure
-) VALUES (
-  8, 'local', ST_GeomFromWKB('\x010100000000000000001CB3400000000000BFB740', 4326)
-);
+INSERT INTO object_geometries (object_id, geotype, figure)
+VALUES (8, 'global', ST_GeomFromWKB('\x010100000050EDC2C540833E40FEE60F17CA384940', 4326));
+INSERT INTO object_geometries (object_id, geotype, figure)
+VALUES (8, 'local', ST_GeomFromWKB('\x01010000000000000000EEBC400000000000889D40', 4326));
 INSERT INTO objects (id, type) VALUES (9, 'gateway');
-INSERT INTO object_gateways (
-  id, is_inbound, is_outbound
-) VALUES (
-  9, FALSE, TRUE
-);
+INSERT INTO object_gateways (id, is_inbound, is_outbound) VALUES (9, FALSE, TRUE);
 INSERT INTO object_dependencies (master_id, slave_id) VALUES (1, 9);
-INSERT INTO object_geometries (
-  object_id, geotype, figure
-) VALUES (
-  9, 'global', ST_GeomFromWKB('\x010100000033164D6727833E40BD5065BDBD384940', 4326)
-);
-INSERT INTO object_geometries (
-  object_id, geotype, figure
-) VALUES (
-  9, 'local', ST_GeomFromWKB('\x010100000000000000006EAA400000000000BFB740', 4326)
-);
+INSERT INTO object_geometries (object_id, geotype, figure)
+VALUES (9, 'global', ST_GeomFromWKB('\x0101000000B4322B2515833E4073DDEFABCD384940', 4326));
+INSERT INTO object_geometries (object_id, geotype, figure)
+VALUES (9, 'local', ST_GeomFromWKB('\x01010000000000000000807D40000000000068A140', 4326));
+INSERT INTO objects (id, type) VALUES (10, 'gateway');
+INSERT INTO object_gateways (id, is_inbound, is_outbound) VALUES (10, TRUE, FALSE);
+INSERT INTO object_dependencies (master_id, slave_id) VALUES (1, 10);
+INSERT INTO object_geometries (object_id, geotype, figure)
+VALUES (10, 'global', ST_GeomFromWKB('\x0101000000A41B615111833E40CA83995BC6384940', 4326));
+INSERT INTO object_geometries (object_id, geotype, figure)
+VALUES (10, 'local', ST_GeomFromWKB('\x01010000000000000000807D400000000000B2B040', 4326));
+INSERT INTO objects (id, type) VALUES (11, 'gateway');
+INSERT INTO object_gateways (id, is_inbound, is_outbound) VALUES (11, FALSE, TRUE);
+INSERT INTO object_dependencies (master_id, slave_id) VALUES (1, 11);
+INSERT INTO object_geometries (object_id, geotype, figure)
+VALUES (11, 'global', ST_GeomFromWKB('\x01010000007C98BD6C3B833E40C600E4DFC2384940', 4326));
+INSERT INTO object_geometries (object_id, geotype, figure)
+VALUES (11, 'local', ST_GeomFromWKB('\x01010000000000000000EEBC400000000000B2B040', 4326));
+INSERT INTO objects (id, type) VALUES (12, 'gateway');
+INSERT INTO object_gateways (id, is_inbound, is_outbound) VALUES (12, TRUE, FALSE);
+INSERT INTO object_dependencies (master_id, slave_id) VALUES (1, 12);
+INSERT INTO object_geometries (object_id, geotype, figure)
+VALUES (12, 'global', ST_GeomFromWKB('\x010100000033164D6727833E40BD5065BDBD384940', 4326));
+INSERT INTO object_geometries (object_id, geotype, figure)
+VALUES (12, 'local', ST_GeomFromWKB('\x010100000000000000001CB3400000000000BFB740', 4326));
+INSERT INTO objects (id, type) VALUES (13, 'gateway');
+INSERT INTO object_gateways (id, is_inbound, is_outbound) VALUES (13, FALSE, TRUE);
+INSERT INTO object_dependencies (master_id, slave_id) VALUES (1, 13);
+INSERT INTO object_geometries (object_id, geotype, figure)
+VALUES (13, 'global', ST_GeomFromWKB('\x010100000033164D6727833E40BD5065BDBD384940', 4326));
+INSERT INTO object_geometries (object_id, geotype, figure)
+VALUES (13, 'local', ST_GeomFromWKB('\x010100000000000000006EAA400000000000BFB740', 4326));
