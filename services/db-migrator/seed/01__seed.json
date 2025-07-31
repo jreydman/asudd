@@ -1,0 +1,150 @@
+{
+  "objects": [
+    {
+      "type": "crossroad",
+      "id": 1,
+      "name": "бульв. Т.Шевченка - вул. Леонтовича",
+      "geometry": [
+        {
+          "geotype": "global",
+          "figure": { "type": "Point", "coordinates": [30.509292, 50.444116] },
+          "angle": 13.5
+        }
+      ],
+      "picture": {
+        "axis_width": 7920,
+        "axis_height": 6195,
+        "picture_filename": "2.bmp",
+        "scale": 18.5
+      }
+    },
+
+    {
+      "id": 2,
+      "type": "signal",
+      "kind": ["traffic"],
+      "geometry": [
+        {
+          "geotype": "local",
+          "figure": { "type": "Point", "coordinates": [7051, 1941] }
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "signal",
+      "kind": ["traffic"],
+      "geometry": [
+        {
+          "geotype": "local",
+          "figure": { "type": "Point", "coordinates": [3960, 2794] },
+          "angle": 1.5
+        }
+      ]
+    },
+
+    {
+      "id": 4,
+      "type": "signal",
+      "kind": ["traffic"],
+      "geometry": [
+        {
+          "geotype": "local",
+          "figure": { "type": "Point", "coordinates": [4782, 4274] },
+          "angle": 3
+        }
+      ]
+    },
+
+    {
+      "id": 5,
+      "type": "gateway",
+      "is_inbound": false,
+      "is_outbound": true,
+      "geometry": [
+        {
+          "geotype": "global",
+          "figure": { "type": "Point", "coordinates": [30.5093851, 50.4443604] }
+        },
+        {
+          "geotype": "local",
+          "figure": { "type": "Point", "coordinates": [3960, 272] }
+        }
+      ]
+    },
+
+    {
+      "id": 6,
+      "type": "gateway",
+      "is_inbound": true,
+      "is_outbound": false,
+      "geometry": [
+        {
+          "geotype": "global",
+          "figure": { "type": "Point", "coordinates": [30.5096933, 50.444157] }
+        },
+        {
+          "geotype": "local",
+          "figure": { "type": "Point", "coordinates": [7365, 1941] }
+        }
+      ]
+    },
+
+    {
+      "id": 7,
+      "type": "gateway",
+      "is_inbound": false,
+      "is_outbound": true,
+      "geometry": [
+        {
+          "geotype": "global",
+          "figure": { "type": "Point", "coordinates": [30.5090917, 50.4442556] }
+        },
+        {
+          "geotype": "local",
+          "figure": { "type": "Point", "coordinates": [191, 1941] }
+        }
+      ]
+    },
+
+    {
+      "id": 8,
+      "type": "gateway",
+      "is_inbound": true,
+      "is_outbound": false,
+      "geometry": [
+        {
+          "geotype": "global",
+          "figure": { "type": "Point", "coordinates": [30.5089658, 50.4440528] }
+        },
+        {
+          "geotype": "local",
+          "figure": { "type": "Point", "coordinates": [191, 4275] }
+        }
+      ]
+    },
+
+    {
+      "id": 9,
+      "type": "gateway",
+      "is_inbound": false,
+      "is_outbound": true,
+      "geometry": [
+        {
+          "geotype": "global",
+          "figure": { "type": "Point", "coordinates": [30.5096066, 50.4439467] }
+        },
+        {
+          "geotype": "local",
+          "figure": { "type": "Point", "coordinates": [7365, 4264] }
+        }
+      ]
+    }
+  ],
+  "dependencies": [
+    {
+      "master_id": 1,
+      "slave_ids": [2, 3, 4, 5, 6, 7, 8, 9]
+    }
+  ]
+}

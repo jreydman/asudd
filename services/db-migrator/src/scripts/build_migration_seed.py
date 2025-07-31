@@ -1,123 +1,132 @@
 import json
 import base64
-import shutil
-
 from pathlib import Path
-from shapely.geometry import shape
-from shapely.wkb import dumps as wkb_dumps
 
-# ------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 
-def to_pg_geom(geojson):
-    return f"ST_GeomFromWKB('\\x{wkb_dumps(shape(geojson), hex=True)}', 4326)"
+def build_migration_seed():
+    root = Path(__file__).parents[2]
+    seed_dir = root / "seed"
+    sql_dir = root / "sql_src" / "seed"
+    pictures_dir = seed_dir / "pictures"
 
-def b64(path):
-    return base64.b64encode(path.read_bytes()).decode("ascii")
+    print(f"[INFO] Scanning seed directory: {seed_dir}")
+    for seed_file in seed_dir.glob("*.json"):
+        if seed_file.name.startswith("__"):
+            continue
 
-def insert_objects(obj_id, obj_type):
-    return f"INSERT INTO objects (id, type) VALUES ({obj_id}, '{obj_type}');"
+        print(f"[INFO] Processing seed file: {seed_file.name}")
+        with open(seed_file, 'r') as f:
+            data = json.load(f)
 
-def insert_object_table(obj_id, obj_type, data):
-    table = f"object_{obj_type}s"
-    fields = []
-    values = []
+        sql = [f"-- Generated from {seed_file.name}", "BEGIN;", TEMP_TABLE_SQL]
 
-    if obj_type == "gateway":
-        fields = ["id", "is_inbound", "is_outbound"]
-        values = [obj_id, str(data["is_inbound"]).upper(), str(data["is_outbound"]).upper()]
+        for obj in data['objects']:
+            print(f"[DEBUG] Processing object id={obj['id']} type={obj['type']}")
+            sql.extend(process_object(obj, pictures_dir))
 
-    elif obj_type == "signal":
-        fields = ["id", "standard", "kind"]
-        values = [
-            obj_id,
-            f"'{data.get('standard')}'" if data.get("standard") else "NULL",
-            f"ARRAY{data.get('kind', [])}::OBJECT_SIGNAL_KIND[]"
-        ]
+        if 'dependencies' in data:
+            print(f"[INFO] Adding {len(data['dependencies'])} dependency groups")
+            for dep in data['dependencies']:
+                for slave_id in dep['slave_ids']:
+                    sql.append(DEPENDENCY_SQL.format(
+                        master=dep['master_id'],
+                        slave=slave_id
+                    ))
 
-    elif obj_type == "direction":
-        fields = ["id", "definition"]
-        values = [obj_id, f"'{data.get('definition', 'internal')}'"]
+        sql += ["DROP TABLE temp_id_mapping;", "COMMIT;"]
 
-    else:
-        return f"-- Unsupported object type: {obj_type}"
+        sql_path = sql_dir / f"{seed_file.stem}.sql"
+        sql_path.parent.mkdir(parents=True, exist_ok=True)
+        sql_path.write_text("\n".join(sql), encoding="utf-8")
 
-    fields_str = ", ".join(fields)
-    values_str = ", ".join(str(v) for v in values)
-    return f"INSERT INTO {table} ({fields_str}) VALUES ({values_str});"
+        print(f"[SUCCESS] SQL written to: {sql_path}")
 
-def insert_geometries(obj_id, geometries):
-    stmts = []
-    for g in geometries:
-        geotype = g["geotype"]
-        angle = g.get("angle", 0)  # <-- изменено: angle на уровне геометрии, а не figure
-        figure_sql = to_pg_geom(g["figure"])
-        if angle != 0:
-            stmts.append(
-                f"""INSERT INTO object_geometries (object_id, geotype, figure, angle)
-VALUES ({obj_id}, '{geotype}', {figure_sql}, {angle});"""
-            )
-        else:
-            stmts.append(
-                f"""INSERT INTO object_geometries (object_id, geotype, figure)
-VALUES ({obj_id}, '{geotype}', {figure_sql});"""
-            )
-    return stmts
 
-def insert_crossroad_data(crossroad_id, name, picture, geometry, seed_dir):
-    sql = [
-        insert_objects(crossroad_id, "crossroad"),
-        f"INSERT INTO object_crossroads (id, name) VALUES ({crossroad_id}, $$ {name} $$);",
-        f"""INSERT INTO object_pictures (
-  object_id, buffer, axis_width, axis_height, scale, angle
-) VALUES (
-  {crossroad_id}, decode('{b64(seed_dir / 'pictures' / picture["picture_filename"])}', 'base64'),
-  {picture["axis_width"]}, {picture["axis_height"]},
-  {picture["scale"]}, {picture.get("angle", 0)}
+TEMP_TABLE_SQL = """
+CREATE TEMPORARY TABLE temp_id_mapping (
+    seed_id INTEGER PRIMARY KEY,
+    db_id INTEGER
 );"""
-    ]
-    sql += insert_geometries(crossroad_id, geometry)
+
+DEPENDENCY_SQL = """
+INSERT INTO object_dependencies (master_id, slave_id)
+SELECT m.db_id, s.db_id
+FROM temp_id_mapping m, temp_id_mapping s
+WHERE m.seed_id = {master} AND s.seed_id = {slave};"""
+
+# -------------------------------------------------------------------------------
+
+def process_object(obj, pictures_dir: Path) -> list[str]:
+    lines = [f"""
+DO $$
+DECLARE
+    new_id INTEGER;
+BEGIN
+    INSERT INTO objects (type, is_active, attributes)
+    VALUES ('{obj['type']}', TRUE, '{{}}')
+    RETURNING id INTO new_id;
+
+    INSERT INTO temp_id_mapping (seed_id, db_id) VALUES ({obj['id']}, new_id);"""]
+
+    if obj['type'] == 'crossroad':
+        lines.append(f"""
+    INSERT INTO object_crossroads (id, name)
+    VALUES (new_id, {repr(obj.get('name'))});""")
+
+    elif obj['type'] == 'signal':
+        kinds = "{" + ",".join(obj.get('kind', [])) + "}"
+        lines.append(f"""
+    INSERT INTO object_signals (id, kind)
+    VALUES (new_id, '{kinds}'::OBJECT_SIGNAL_KIND[]);""")
+
+    elif obj['type'] == 'gateway':
+        inbound = str(obj.get('is_inbound', False)).lower()
+        outbound = str(obj.get('is_outbound', False)).lower()
+        lines.append(f"""
+    INSERT INTO object_gateways (id, is_inbound, is_outbound)
+    VALUES (new_id, {inbound}, {outbound});""")
+
+    lines.extend(process_geometry(obj.get('geometry', [])))
+    lines.extend(process_picture(obj.get('picture'), pictures_dir))
+
+    lines.append("END $$;")
+    return lines
+
+# -------------------------------------------------------------------------------
+
+def process_geometry(geometries: list) -> list[str]:
+    sql = []
+    for geom in geometries:
+        if geom['figure']['type'] == 'Point':
+            x, y = geom['figure']['coordinates']
+            geom_sql = f"ST_SetSRID(ST_MakePoint({x}, {y}), 4326)"
+            sql.append(f"""
+    INSERT INTO object_geometries (object_id, geotype, angle, figure)
+    VALUES (new_id, '{geom['geotype']}', {geom.get('angle', 0)}, {geom_sql});""")
     return sql
 
-# ------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------
 
-def build():
-    term_width = shutil.get_terminal_size((100, 20)).columns
-    root = Path(__file__).resolve().parents[2]
-    seed_dir = root / "seed"
-    out_dir = root / "sql_src/seed"
-    out_dir.mkdir(parents=True, exist_ok=True)
+def process_picture(pic: dict, pictures_dir: Path) -> list[str]:
+    if not pic:
+        return []
 
-    for json_file in sorted(seed_dir.glob("seed__crossroad-*.json")):
-        data = json.loads(json_file.read_text(encoding="utf-8"))
-        name = data["name"]
-        geometry = data["geometry"]
-        picture = data["picture"]
-        objects = data["objects"]
+    path = pictures_dir / pic['picture_filename']
+    if not path.exists():
+        print(f"[WARN] Picture not found: {path.name}")
+        return []
 
-        crossroad_id = 1
-        object_id = crossroad_id + 1
-        sql = [f"-- {json_file.name}"]
+    with open(path, 'rb') as f:
+        encoded = base64.b64encode(f.read()).decode('utf-8')
 
-        sql += insert_crossroad_data(crossroad_id, name, picture, geometry, seed_dir)
+    return [f"""
+    INSERT INTO object_pictures (object_id, buffer, axis_width, axis_height, scale, angle)
+    VALUES (new_id, decode('{encoded}', 'base64'),
+            {pic['axis_width']}, {pic['axis_height']},
+            {pic.get('scale', 1)}, {pic.get('angle', 0)});"""]
 
-        for obj in objects:
-            obj_type = obj["type"]
-            obj_id = object_id
-            object_id += 1
+# -------------------------------------------------------------------------------
 
-            sql.append(insert_objects(obj_id, obj_type))
-            sql.append(insert_object_table(obj_id, obj_type, obj))
-            sql.append(f"INSERT INTO object_dependencies (master_id, slave_id) VALUES ({crossroad_id}, {obj_id});")
-            sql += insert_geometries(obj_id, obj.get("geometry", []))
-
-        out_path = out_dir / json_file.name.replace(".json", ".sql")
-        out_path.write_text("\n".join(sql), encoding="utf-8")
-        print(f"Built: {out_path.relative_to(root)}")
-
-    print("=" * term_width)
-    print(f"Seed migration built for {len(list(seed_dir.glob('seed__crossroad-*.json')))} crossroad(s)")
-    print("=" * term_width)
-
-# ------------------------------------------------------------------------------
-
-build()
+if __name__ == "__main__":
+    build_migration_seed()
