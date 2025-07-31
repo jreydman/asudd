@@ -1,8 +1,8 @@
 {
   "objects": [
     {
-      "type": "crossroad",
       "id": 1,
+      "type": "crossroad",
       "name": "бульв. Т.Шевченка - вул. Леонтовича",
       "geometry": [
         {

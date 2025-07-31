@@ -245,13 +245,35 @@
           }
         }
       ]
+    },
+
+    {
+      "id": 14,
+      "type": "direction",
+      "definition": "internal",
+      "geometry": [
+        {
+          "geotype": "local",
+          "figure": {
+            "type": "LineString",
+            "coordinates": [
+              [7306, 1997],
+              [572, 1997]
+            ]
+          }
+        }
+      ]
     }
   ],
 
   "dependencies": [
     {
       "master_id": 1,
-      "slave_ids": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+      "slave_ids": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+    },
+    {
+      "master_id": 8,
+      "slave_ids": [9, 14]
     }
   ]
 }

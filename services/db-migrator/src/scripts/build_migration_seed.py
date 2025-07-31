@@ -42,6 +42,7 @@ def build_migration_seed():
 
         print(f"[SUCCESS] SQL written to: {sql_path}")
 
+# -------------------------------------------------------------------------------
 
 TEMP_TABLE_SQL = """
 CREATE TEMPORARY TABLE temp_id_mapping (
@@ -87,6 +88,12 @@ BEGIN
     INSERT INTO object_gateways (id, is_inbound, is_outbound)
     VALUES (new_id, {inbound}, {outbound});""")
 
+    elif obj['type'] == 'direction':
+        definition = obj.get('definition', 'internal')
+        lines.append(f"""
+    INSERT INTO object_directions (id, definition)
+    VALUES (new_id, '{definition}'::OBJECT_DIRECTION_DEFINITION);""")
+
     lines.extend(process_geometry(obj.get('geometry', [])))
     lines.extend(process_picture(obj.get('picture'), pictures_dir))
 
@@ -101,6 +108,12 @@ def process_geometry(geometries: list) -> list[str]:
         if geom['figure']['type'] == 'Point':
             x, y = geom['figure']['coordinates']
             geom_sql = f"ST_SetSRID(ST_MakePoint({x}, {y}), 4326)"
+            sql.append(f"""
+    INSERT INTO object_geometries (object_id, geotype, angle, figure)
+    VALUES (new_id, '{geom['geotype']}', {geom.get('angle', 0)}, {geom_sql});""")
+        elif geom['figure']['type'] == 'LineString':
+            coords = ", ".join([f"ST_MakePoint({x}, {y})" for x, y in geom['figure']['coordinates']])
+            geom_sql = f"ST_SetSRID(ST_MakeLine(ARRAY[{coords}]), 4326)"
             sql.append(f"""
     INSERT INTO object_geometries (object_id, geotype, angle, figure)
     VALUES (new_id, '{geom['geotype']}', {geom.get('angle', 0)}, {geom_sql});""")
