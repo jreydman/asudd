@@ -253,8 +253,7 @@ _префікс /api_
 
 - Джерело даних управління - [АСУДД-v1](#)
 
-- Область тестової інтеграції - [OpenStreedMap area](https://map.project-osrm.org/?z=16&center=50.443711%2C30.510782&loc=50.448227%2C30.483134&loc=50.443499%2C30.512295&loc=50.442211%2C30.520057&hl=en&alt=0&srv=0
-)
+- Область тестової інтеграції - [OpenStreedMap area](https://www.openstreetmap.org/edit#map=19/50.444072/30.509295)
 
 - Діаграми розрахункових маршрутів - [time-space diagram](https://help.miovision.com/s/article/Evaluating-signal-coordination-in-TrafficLink)
 
