@@ -1,0 +1,13 @@
+[project]
+name = "asudd-database-migrator"
+version = "0.1.0"
+description = "Migration tool for ASUDD database"
+requires-python = ">=3.13"
+dependencies = [
+    "matplotlib>=3.10.3",
+    "numpy>=2.3.2",
+    "pandas>=2.3.1",
+    "pillow>=11.3.0",
+    "psycopg2-binary>=2.9.10",
+    "shapely>=2.1.1",
+]

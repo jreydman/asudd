@@ -1,4 +1,0 @@
-CREATE TABLE IF NOT EXISTS test_table (
-  id INTEGER NOT NULL,
-  name TEXT,
-);

@@ -1,0 +1,189 @@
+{
+  "name": "бульв. Т.Шевченка - вул. Володимирська",
+  "geometry": [
+    {
+      "geotype": "global",
+      "figure": {
+        "type": "Point",
+        "coordinates": [30.512462, 50.4436],
+        "angle": 13.5
+      }
+    }
+  ],
+  "picture": {
+    "axis_width": 7920,
+    "axis_height": 6195,
+    "picture_filename": "1.bmp",
+    "scale": 18.5
+  },
+  "objects": [
+    {
+      "type": "gateway",
+      "is_inbound": true,
+      "is_outbound": false,
+      "geometry": [
+        {
+          "geotype": "global",
+          "figure": {
+            "type": "Point",
+            "coordinates": [30.5125862, 50.4439463]
+          }
+        },
+        {
+          "geotype": "local",
+          "figure": {
+            "type": "Point",
+            "coordinates": [3328, 113]
+          }
+        }
+      ]
+    },
+    {
+      "type": "gateway",
+      "is_inbound": false,
+      "is_outbound": true,
+      "geometry": [
+        {
+          "geotype": "global",
+          "figure": {
+            "type": "Point",
+            "coordinates": [30.5125862, 50.4439463]
+          }
+        },
+        {
+          "geotype": "local",
+          "figure": {
+            "type": "Point",
+            "coordinates": [4921, 113]
+          }
+        }
+      ]
+    },
+    {
+      "type": "gateway",
+      "is_inbound": true,
+      "is_outbound": false,
+      "geometry": [
+        {
+          "geotype": "global",
+          "figure": {
+            "type": "Point",
+            "coordinates": [30.5127071, 50.4436673]
+          }
+        },
+        {
+          "geotype": "local",
+          "figure": {
+            "type": "Point",
+            "coordinates": [7406, 1890]
+          }
+        }
+      ]
+    },
+    {
+      "type": "gateway",
+      "is_inbound": false,
+      "is_outbound": true,
+      "geometry": [
+        {
+          "geotype": "global",
+          "figure": {
+            "type": "Point",
+            "coordinates": [30.5120414, 50.4437766]
+          }
+        },
+        {
+          "geotype": "local",
+          "figure": {
+            "type": "Point",
+            "coordinates": [472, 2228]
+          }
+        }
+      ]
+    },
+    {
+      "type": "gateway",
+      "is_inbound": true,
+      "is_outbound": false,
+      "geometry": [
+        {
+          "geotype": "global",
+          "figure": {
+            "type": "Point",
+            "coordinates": [30.511983, 50.4435534]
+          }
+        },
+        {
+          "geotype": "local",
+          "figure": {
+            "type": "Point",
+            "coordinates": [472, 4274]
+          }
+        }
+      ]
+    },
+    {
+      "type": "gateway",
+      "is_inbound": false,
+      "is_outbound": true,
+      "geometry": [
+        {
+          "geotype": "global",
+          "figure": {
+            "type": "Point",
+            "coordinates": [30.5126255, 50.4434471]
+          }
+        },
+        {
+          "geotype": "local",
+          "figure": {
+            "type": "Point",
+            "coordinates": [7406, 4274]
+          }
+        }
+      ]
+    },
+    {
+      "type": "gateway",
+      "is_inbound": true,
+      "is_outbound": false,
+      "geometry": [
+        {
+          "geotype": "global",
+          "figure": {
+            "type": "Point",
+            "coordinates": [30.51232, 50.4432904]
+          }
+        },
+        {
+          "geotype": "local",
+          "figure": {
+            "type": "Point",
+            "coordinates": [4892, 6079]
+          }
+        }
+      ]
+    },
+    {
+      "type": "gateway",
+      "is_inbound": false,
+      "is_outbound": true,
+      "geometry": [
+        {
+          "geotype": "global",
+          "figure": {
+            "type": "Point",
+            "coordinates": [30.51232, 50.4432904]
+          }
+        },
+        {
+          "geotype": "local",
+          "figure": {
+            "type": "Point",
+            "coordinates": [3383, 6079]
+          }
+        }
+      ]
+    }
+  ]
+}
