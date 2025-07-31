@@ -11,7 +11,7 @@ def build_migration_seed():
     pictures_dir = seed_dir / "pictures"
 
     print(f"[INFO] Scanning seed directory: {seed_dir}")
-    for seed_file in seed_dir.glob("*.json"):
+    for seed_file in seed_dir.glob("*seed.json"):
         if seed_file.name.startswith("__"):
             continue
 

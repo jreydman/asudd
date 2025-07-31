@@ -1,0 +1,178 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Crossroad Objects Schema",
+  "description": "Schema for describing crossroads and related objects",
+  "type": "object",
+  "properties": {
+    "objects": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "properties": {
+              "id": { "type": "integer" },
+              "type": { "const": "crossroad" },
+              "name": { "type": "string" },
+              "geometry": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "geotype": { "const": "global" },
+                    "figure": {
+                      "type": "object",
+                      "properties": {
+                        "type": { "const": "Point" },
+                        "coordinates": {
+                          "type": "array",
+                          "items": [{ "type": "number" }, { "type": "number" }],
+                          "minItems": 2,
+                          "maxItems": 2
+                        }
+                      },
+                      "required": ["type", "coordinates"]
+                    },
+                    "angle": { "type": "number" }
+                  },
+                  "required": ["geotype", "figure"]
+                }
+              },
+              "picture": {
+                "type": "object",
+                "properties": {
+                  "axis_width": { "type": "integer" },
+                  "axis_height": { "type": "integer" },
+                  "picture_filename": { "type": "string" },
+                  "scale": { "type": "number" }
+                },
+                "required": [
+                  "axis_width",
+                  "axis_height",
+                  "picture_filename",
+                  "scale"
+                ]
+              }
+            },
+            "required": ["id", "type", "name", "geometry", "picture"]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": { "type": "integer" },
+              "type": { "const": "signal" },
+              "kind": {
+                "type": "array",
+                "items": { "type": "string" }
+              },
+              "geometry": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "geotype": { "const": "local" },
+                    "figure": {
+                      "type": "object",
+                      "properties": {
+                        "type": { "const": "Point" },
+                        "coordinates": {
+                          "type": "array",
+                          "items": [{ "type": "number" }, { "type": "number" }],
+                          "minItems": 2,
+                          "maxItems": 2
+                        }
+                      },
+                      "required": ["type", "coordinates"]
+                    },
+                    "angle": { "type": "number" }
+                  },
+                  "required": ["geotype", "figure"]
+                }
+              }
+            },
+            "required": ["id", "type", "kind", "geometry"]
+          },
+          {
+            "type": "object",
+            "properties": {
+              "id": { "type": "integer" },
+              "type": { "const": "gateway" },
+              "is_inbound": { "type": "boolean" },
+              "is_outbound": { "type": "boolean" },
+              "geometry": {
+                "type": "array",
+                "items": {
+                  "oneOf": [
+                    {
+                      "type": "object",
+                      "properties": {
+                        "geotype": { "const": "global" },
+                        "figure": {
+                          "type": "object",
+                          "properties": {
+                            "type": { "const": "Point" },
+                            "coordinates": {
+                              "type": "array",
+                              "items": [
+                                { "type": "number" },
+                                { "type": "number" }
+                              ],
+                              "minItems": 2,
+                              "maxItems": 2
+                            }
+                          },
+                          "required": ["type", "coordinates"]
+                        }
+                      },
+                      "required": ["geotype", "figure"]
+                    },
+                    {
+                      "type": "object",
+                      "properties": {
+                        "geotype": { "const": "local" },
+                        "figure": {
+                          "type": "object",
+                          "properties": {
+                            "type": { "const": "Point" },
+                            "coordinates": {
+                              "type": "array",
+                              "items": [
+                                { "type": "number" },
+                                { "type": "number" }
+                              ],
+                              "minItems": 2,
+                              "maxItems": 2
+                            }
+                          },
+                          "required": ["type", "coordinates"]
+                        }
+                      },
+                      "required": ["geotype", "figure"]
+                    }
+                  ]
+                },
+                "minItems": 1
+              }
+            },
+            "required": ["id", "type", "is_inbound", "is_outbound", "geometry"]
+          }
+        ]
+      }
+    },
+    "dependencies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "master_id": { "type": "integer" },
+          "slave_ids": {
+            "type": "array",
+            "items": { "type": "integer" }
+          }
+        },
+        "required": ["master_id", "slave_ids"]
+      }
+    }
+  },
+  "required": ["objects", "dependencies"]
+}
