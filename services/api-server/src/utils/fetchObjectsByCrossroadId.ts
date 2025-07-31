@@ -12,7 +12,7 @@ export default async function fetchObjectsByCrossroadId(crossroad_id: number) {
         objects.attributes,
         object_signals.standard,
         object_signals.kind,
-    	  ST_AsGeoJSON(object_geometries.geometry) AS geometry,
+    	  ST_AsGeoJSON(object_geometries.figure) AS geometry,
         object_geometries.angle as geometry_angle
     FROM object_dependencies
     JOIN objects ON objects.id = object_dependencies.slave_id

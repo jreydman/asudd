@@ -5,7 +5,7 @@ export default async function fetchCrossroadLocations() {
     SELECT 
       object_geometries.object_id as id,
       object_crossroads.name,
-    	ST_AsGeoJSON(object_geometries.geometry) AS geometry,
+    	ST_AsGeoJSON(object_geometries.figure) AS geometry,
       object_geometries.angle
     FROM object_geometries
     JOIN object_crossroads ON object_geometries.object_id = object_crossroads.id
