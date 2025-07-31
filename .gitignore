@@ -6,3 +6,5 @@ docs/ОДР*
 .venv/
 __pycache__/
 data/
+services/db-migrator/sql_src/seed/
+services/db-migrator/seed/pictures/
