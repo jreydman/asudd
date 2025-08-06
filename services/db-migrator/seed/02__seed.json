@@ -3,18 +3,18 @@
     {
       "id": 1,
       "type": "crossroad",
-      "name": "бульв. Т.Шевченка - вул. Леонтовича",
+      "name": "бульв. Т.Шевченка - вул. С.Петлюри",
       "geometry": [
         {
           "geotype": "global",
-          "figure": { "type": "Point", "coordinates": [30.509292, 50.444116] },
+          "figure": { "type": "Point", "coordinates": [30.500937, 50.44546] },
           "angle": 13.5
         }
       ],
       "picture": {
         "axis_width": 7920,
         "axis_height": 6195,
-        "picture_filename": "2.bmp",
+        "picture_filename": "3.bmp",
         "scale": 18.5
       }
     },
@@ -26,7 +26,7 @@
       "geometry": [
         {
           "geotype": "local",
-          "figure": { "type": "Point", "coordinates": [7051, 1941] }
+          "figure": { "type": "Point", "coordinates": [3860, 3419] }
         }
       ]
     },
@@ -37,7 +37,7 @@
       "geometry": [
         {
           "geotype": "local",
-          "figure": { "type": "Point", "coordinates": [3960, 2794] },
+          "figure": { "type": "Point", "coordinates": [2700, 4263] },
           "angle": 1.5
         }
       ]
@@ -50,7 +50,7 @@
       "geometry": [
         {
           "geotype": "local",
-          "figure": { "type": "Point", "coordinates": [4782, 4274] },
+          "figure": { "type": "Point", "coordinates": [4673, 5100] },
           "angle": 3
         }
       ]
@@ -59,16 +59,16 @@
     {
       "id": 5,
       "type": "gateway",
-      "is_inbound": false,
-      "is_outbound": true,
+      "is_inbound": true,
+      "is_outbound": false,
       "geometry": [
         {
           "geotype": "global",
-          "figure": { "type": "Point", "coordinates": [30.5093851, 50.4443604] }
+          "figure": { "type": "Point", "coordinates": [30.501309, 50.4455206] }
         },
         {
           "geotype": "local",
-          "figure": { "type": "Point", "coordinates": [3960, 272] }
+          "figure": { "type": "Point", "coordinates": [7476, 2207] }
         }
       ]
     },
@@ -76,16 +76,16 @@
     {
       "id": 6,
       "type": "gateway",
-      "is_inbound": true,
-      "is_outbound": false,
+      "is_inbound": false,
+      "is_outbound": true,
       "geometry": [
         {
           "geotype": "global",
-          "figure": { "type": "Point", "coordinates": [30.5096933, 50.444157] }
+          "figure": { "type": "Point", "coordinates": [30.5004669, 50.4456567] }
         },
         {
           "geotype": "local",
-          "figure": { "type": "Point", "coordinates": [7365, 1941] }
+          "figure": { "type": "Point", "coordinates": [1839, 2207] }
         }
       ]
     },
@@ -93,16 +93,16 @@
     {
       "id": 7,
       "type": "gateway",
-      "is_inbound": false,
-      "is_outbound": true,
+      "is_inbound": true,
+      "is_outbound": false,
       "geometry": [
         {
           "geotype": "global",
-          "figure": { "type": "Point", "coordinates": [30.5090917, 50.4442556] }
+          "figure": { "type": "Point", "coordinates": [30.5003505, 50.4454441] }
         },
         {
           "geotype": "local",
-          "figure": { "type": "Point", "coordinates": [191, 1941] }
+          "figure": { "type": "Point", "coordinates": [1839, 4263] }
         }
       ]
     },
@@ -110,16 +110,16 @@
     {
       "id": 8,
       "type": "gateway",
-      "is_inbound": true,
-      "is_outbound": false,
+      "is_inbound": false,
+      "is_outbound": true,
       "geometry": [
         {
           "geotype": "global",
-          "figure": { "type": "Point", "coordinates": [30.5089658, 50.4440528] }
+          "figure": { "type": "Point", "coordinates": [30.50122, 50.445301] }
         },
         {
           "geotype": "local",
-          "figure": { "type": "Point", "coordinates": [191, 4275] }
+          "figure": { "type": "Point", "coordinates": [7476, 4263] }
         }
       ]
     },
@@ -127,21 +127,39 @@
     {
       "id": 9,
       "type": "gateway",
+      "is_inbound": true,
+      "is_outbound": false,
+      "geometry": [
+        {
+          "geotype": "global",
+          "figure": { "type": "Point", "coordinates": [30.5005966, 50.4452852] }
+        },
+        {
+          "geotype": "local",
+          "figure": { "type": "Point", "coordinates": [4453, 5737] }
+        }
+      ]
+    },
+
+    {
+      "id": 10,
+      "type": "gateway",
       "is_inbound": false,
       "is_outbound": true,
       "geometry": [
         {
           "geotype": "global",
-          "figure": { "type": "Point", "coordinates": [30.5096066, 50.4439467] }
+          "figure": { "type": "Point", "coordinates": [30.5005966, 50.4452852] }
         },
         {
           "geotype": "local",
-          "figure": { "type": "Point", "coordinates": [7365, 4264] }
+          "figure": { "type": "Point", "coordinates": [3185, 5637] }
         }
       ]
     },
+
     {
-      "id": 13,
+      "id": 17,
       "type": "direction",
       "definition": "internal",
       "geometry": [
@@ -150,8 +168,9 @@
           "figure": {
             "type": "LineString",
             "coordinates": [
-              [314, 4276],
-              [7151, 4276]
+              [4553, 5536],
+              [5060, 4248],
+              [7301, 4248]
             ]
           }
         }
@@ -161,11 +180,11 @@
   "dependencies": [
     {
       "master_id": 1,
-      "slave_ids": [2, 3, 4, 5, 6, 7, 8, 9, 13]
+      "slave_ids": [2, 3, 4, 5, 6, 7, 8, 9, 10, 17]
     },
 
-    { "master_id": 4, "slave_ids": [13] },
-    { "master_id": 13, "slave_ids": [8] },
-    { "master_id": 9, "slave_ids": [13] }
+    { "master_id": 4, "slave_ids": [17] },
+    { "master_id": 17, "slave_ids": [9] },
+    { "master_id": 8, "slave_ids": [17] }
   ]
 }

@@ -3,6 +3,7 @@ from pathlib import Path
 
 # -------------------------------------------------------------------------------
 
+
 def build_migration_up():
     root = Path(__file__).resolve().parents[2]
     sql_src = root / "sql_src"
@@ -10,7 +11,8 @@ def build_migration_up():
 
     directories = ["tables", "functions", "triggers"]
     sql_files = sorted(
-        f for d in directories
+        f
+        for d in directories
         for f in (sql_src / d).glob("*.sql")
         if f.name[:2].isdigit()
     )
@@ -25,7 +27,10 @@ def build_migration_up():
             print(f"[SUCCESS] Added: {rel_path}")
 
     print("=" * shutil.get_terminal_size((80, 20)).columns)
-    print(f"[DONE] Composed {len(sql_files)} file(s) into: {output_file.relative_to(root)}")
+    print(
+        f"[DONE] Composed {len(sql_files)} file(s) into: {output_file.relative_to(root)}"
+    )
+
 
 # -------------------------------------------------------------------------------
 

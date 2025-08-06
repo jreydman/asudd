@@ -261,10 +261,25 @@ _префікс /api_
 
 - Скрипт імплементації геоданих
 ```sh
+# завантажити область тестової інтеграції
 wget http://download.geofabrik.de/osm/central-europe/ukraine-map.osm.pbf
 
-# read with osmosis and stream into osm2pgsql, note '-' arg to both
-osmosis --read-bin ukraine-map.osm.pbf --write-xml - | osm2pgsql --slim -d <dbname> -
+# відрезолювати область
+# left:min(longtitude)  right:max(longtitude)
+# top:max(latitude)     bottom:min(latitude)
+osmosis --read-pbf file="ukraine-latest.osm.pbf" \
+        --bounding-box top=50.492 left=30.408 bottom=50.420 right=30.540 \
+        --write-xml file="ukraine-kyiv-latest.osm"
+
+# записати область в базу даних
+osm2pgsql --database="<dbname>" \
+          --user="<user>" \
+          --host="<host>" \
+          --port="<port>" \
+          --password \
+          --schema="osm_ukraine_kyiv" \
+          --slim \
+          ./ukraine-kyiv-latest.osm
 ```
 
 ---
