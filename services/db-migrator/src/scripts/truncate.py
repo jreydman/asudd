@@ -4,6 +4,7 @@ from src.database import client
 
 # ------------------------------------------------------------------------------
 
+
 def truncate():
     root = Path(__file__).resolve().parents[2]
     truncate_sql_path = root / "sql_src" / "queries" / "truncate_tables.sql"
@@ -18,6 +19,7 @@ def truncate():
 
     print("=" * shutil.get_terminal_size((100, 20)).columns)
     print(f"[DONE] Executed {rel_path} successfully")
+
 
 # ------------------------------------------------------------------------------
 
