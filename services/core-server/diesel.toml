@@ -1,0 +1,10 @@
+# For documentation on how to configure this file,
+# see https://diesel.rs/guides/configuring-diesel-cli
+
+[print_schema]
+patch_file = "src/orm/schema/schema.patch"
+file = "src/orm/schema/orm_schema.rs"
+custom_type_derives = ["diesel::query_builder::QueryId"]
+
+[migrations_directory]
+dir = "/Users/jreydman/Documents/Repositories/traffic-lights/services/core-server/src/orm/migrations"

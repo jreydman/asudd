@@ -1,0 +1,328 @@
+{
+  "objects": [
+    {
+      "id": 1,
+      "object_type": "crossroad",
+      "properties": {
+        "name": "бульв. Т.Шевченка - вул. Володимирська"
+      },
+      "geometries": [
+        {
+          "geotype": "global",
+          "figure": { "type": "Point", "coordinates": [30.512462, 50.4436] },
+          "angle": 13.5
+        }
+      ],
+      "pictures": [
+        {
+          "buffer_path": "1.bmp",
+          "axis_width": 7920,
+          "axis_height": 6195,
+          "scale": 18.5
+        }
+      ]
+    },
+
+    {
+      "id": 2,
+      "object_type": "signal",
+      "properties": {
+        "kind": ["traffic"]
+      },
+      "geometries": [
+        {
+          "geotype": "local",
+          "figure": { "type": "Point", "coordinates": [3328, 361] },
+          "angle": 11
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "object_type": "signal",
+      "properties": {
+        "kind": ["traffic"]
+      },
+      "geometries": [
+        {
+          "geotype": "local",
+          "figure": { "type": "Point", "coordinates": [7143, 1935] }
+        }
+      ]
+    },
+
+    {
+      "id": 4,
+      "object_type": "signal",
+      "properties": {
+        "kind": ["traffic"]
+      },
+      "geometries": [
+        {
+          "geotype": "local",
+          "figure": { "type": "Point", "coordinates": [716, 4374] },
+          "angle": 3
+        }
+      ]
+    },
+
+    {
+      "id": 5,
+      "object_type": "signal",
+      "properties": {
+        "kind": ["traffic"]
+      },
+      "geometries": [
+        {
+          "geotype": "local",
+          "figure": { "type": "Point", "coordinates": [4892, 5818] },
+          "angle": 1.5
+        }
+      ]
+    },
+
+    {
+      "id": 6,
+      "object_type": "gateway",
+      "properties": {
+        "is_inbound": true,
+        "is_outbound": false
+      },
+      "geometries": [
+        {
+          "geotype": "global",
+          "figure": { "type": "Point", "coordinates": [30.5125862, 50.4439463] }
+        },
+        {
+          "geotype": "local",
+          "figure": { "type": "Point", "coordinates": [3328, 113] }
+        }
+      ]
+    },
+
+    {
+      "id": 7,
+      "object_type": "gateway",
+      "properties": {
+        "is_inbound": false,
+        "is_outbound": true
+      },
+      "geometries": [
+        {
+          "geotype": "global",
+          "figure": {
+            "type": "Point",
+            "coordinates": [30.5125862, 50.4439463]
+          }
+        },
+        {
+          "geotype": "local",
+          "figure": {
+            "type": "Point",
+            "coordinates": [4921, 113]
+          }
+        }
+      ]
+    },
+
+    {
+      "id": 8,
+      "object_type": "gateway",
+      "properties": {
+        "is_inbound": true,
+        "is_outbound": false
+      },
+      "geometries": [
+        {
+          "geotype": "global",
+          "figure": {
+            "type": "Point",
+            "coordinates": [30.5127071, 50.4436673]
+          }
+        },
+        {
+          "geotype": "local",
+          "figure": {
+            "type": "Point",
+            "coordinates": [7406, 1890]
+          }
+        }
+      ]
+    },
+
+    {
+      "id": 9,
+      "object_type": "gateway",
+      "properties": {
+        "is_inbound": false,
+        "is_outbound": true
+      },
+      "geometries": [
+        {
+          "geotype": "global",
+          "figure": {
+            "type": "Point",
+            "coordinates": [30.5120414, 50.4437766]
+          }
+        },
+        {
+          "geotype": "local",
+          "figure": {
+            "type": "Point",
+            "coordinates": [472, 2228]
+          }
+        }
+      ]
+    },
+
+    {
+      "id": 10,
+      "object_type": "gateway",
+      "properties": {
+        "is_inbound": true,
+        "is_outbound": false
+      },
+      "geometries": [
+        {
+          "geotype": "global",
+          "figure": {
+            "type": "Point",
+            "coordinates": [30.511983, 50.4435534]
+          }
+        },
+        {
+          "geotype": "local",
+          "figure": {
+            "type": "Point",
+            "coordinates": [472, 4274]
+          }
+        }
+      ]
+    },
+
+    {
+      "id": 11,
+      "object_type": "gateway",
+      "properties": {
+        "is_inbound": false,
+        "is_outbound": true
+      },
+      "geometries": [
+        {
+          "geotype": "global",
+          "figure": {
+            "type": "Point",
+            "coordinates": [30.5126255, 50.4434471]
+          }
+        },
+        {
+          "geotype": "local",
+          "figure": {
+            "type": "Point",
+            "coordinates": [7406, 4274]
+          }
+        }
+      ]
+    },
+
+    {
+      "id": 12,
+      "object_type": "gateway",
+      "properties": {
+        "is_inbound": true,
+        "is_outbound": false
+      },
+      "geometries": [
+        {
+          "geotype": "global",
+          "figure": {
+            "type": "Point",
+            "coordinates": [30.51232, 50.4432904]
+          }
+        },
+        {
+          "geotype": "local",
+          "figure": {
+            "type": "Point",
+            "coordinates": [4892, 6079]
+          }
+        }
+      ]
+    },
+
+    {
+      "id": 13,
+      "object_type": "gateway",
+      "properties": {
+        "is_inbound": false,
+        "is_outbound": true
+      },
+      "geometries": [
+        {
+          "geotype": "global",
+          "figure": {
+            "type": "Point",
+            "coordinates": [30.51232, 50.4432904]
+          }
+        },
+        {
+          "geotype": "local",
+          "figure": {
+            "type": "Point",
+            "coordinates": [3383, 6079]
+          }
+        }
+      ]
+    },
+
+    {
+      "id": 14,
+      "object_type": "direction",
+      "properties": {
+        "definition": "internal"
+      },
+      "geometries": [
+        {
+          "geotype": "local",
+          "figure": {
+            "type": "LineString",
+            "coordinates": [
+              [572, 4261],
+              [7306, 4261]
+            ]
+          }
+        }
+      ]
+    },
+
+    {
+      "id": 15,
+      "object_type": "direction",
+      "properties": { "definition": "internal" },
+      "geometries": [
+        {
+          "geotype": "local",
+          "figure": {
+            "type": "LineString",
+            "coordinates": [
+              [572, 4261],
+              [4706, 4261],
+              [4706, 261]
+            ]
+          }
+        }
+      ]
+    }
+  ],
+
+  "dependencies": [
+    {
+      "master_id": 1,
+      "slave_ids": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 15]
+    },
+
+    { "master_id": 4, "slave_ids": [15] },
+    { "master_id": 15, "slave_ids": [10] },
+    { "master_id": 7, "slave_ids": [15] }
+  ]
+}
