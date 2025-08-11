@@ -28,6 +28,19 @@ impl Insertable<models::object::InsertObject> for schema::SeedObject {
 
 // ------------------------------------------------------------------------------------------------
 
+impl ChildInsertable<models::object_direction::InsertObjectDirection>
+    for schema::SeedObjectDirectionProperties
+{
+    fn to_insert(&self, object_id: i32) -> models::object_direction::InsertObjectDirection {
+        models::object_direction::InsertObjectDirection {
+            id: object_id,
+            definition: self.definition,
+        }
+    }
+}
+
+// ------------------------------------------------------------------------------------------------
+
 impl ChildInsertable<models::object_signal::InsertObjectSignal>
     for schema::SeedObjectSignalProperties
 {

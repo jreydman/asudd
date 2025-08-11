@@ -47,6 +47,14 @@ pub fn insert_seed(
                         .execute(connection)
                         .unwrap();
                 }
+                seed_schema::SeedObject::Direction(direction) => {
+                    let insert_object_direction = direction.properties.to_insert(object_id);
+                    diesel::insert_into(schema::object_directions::table)
+                        .values(&insert_object_direction)
+                        .on_conflict_do_nothing()
+                        .execute(connection)
+                        .unwrap();
+                }
                 seed_schema::SeedObject::Unknown => {}
             }
 

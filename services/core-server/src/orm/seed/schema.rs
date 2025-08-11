@@ -243,6 +243,7 @@ pub enum SeedObject {
     Crossroad(SeedObjectCrossroad),
     Gateway(SeedObjectGateway),
     Signal(SeedObjectSignal),
+    Direction(SeedObjectDirection),
     #[serde(other)]
     Unknown,
 }
@@ -253,6 +254,7 @@ impl SeedObject {
             SeedObject::Crossroad(o) => Some(o),
             SeedObject::Gateway(o) => Some(o),
             SeedObject::Signal(o) => Some(o),
+            SeedObject::Direction(o) => Some(o),
             SeedObject::Unknown => None,
         }
     }
