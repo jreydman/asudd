@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION func__get_route_by_points(points geometry[])
+CREATE OR REPLACE FUNCTION osm__ukraine_kyiv.func__get_route_by_points(points geometry[])
 RETURNS TABLE (
   seq integer,
   node bigint,
@@ -22,23 +22,23 @@ BEGIN
     pt1 := points[i];
     pt2 := points[i+1];
 
-    SELECT id INTO src_id FROM osm_ukraine_kyiv.ways_vertices_pgr
+    SELECT id INTO src_id FROM osm__ukraine_kyiv.ways_vertices_pgr
     ORDER BY the_geom <-> pt1
     LIMIT 1;
 
-    SELECT id INTO tgt_id FROM osm_ukraine_kyiv.ways_vertices_pgr
+    SELECT id INTO tgt_id FROM osm__ukraine_kyiv.ways_vertices_pgr
     ORDER BY the_geom <-> pt2
     LIMIT 1;
 
     FOR route IN
       SELECT * FROM pgr_dijkstra(
-        'SELECT gid AS id, source, target, cost, reverse_cost FROM osm_ukraine_kyiv.ways',
+        'SELECT gid AS id, source, target, cost, reverse_cost FROM osm__ukraine_kyiv.ways',
         src_id, tgt_id, true
       ) LOOP
 
       RETURN QUERY
       SELECT route.seq, route.node, route.edge, route.cost, w.the_geom
-      FROM osm_ukraine_kyiv.ways w
+      FROM osm__ukraine_kyiv.ways w
       WHERE w.gid = route.edge;
 
     END LOOP;
