@@ -2,9 +2,11 @@
 # see https://diesel.rs/guides/configuring-diesel-cli
 
 [print_schema]
-patch_file = "src/orm/schema/schema.patch"
-file = "src/orm/schema/orm_schema.rs"
+file = "src/orm/schema.rs"
+import_types = ["diesel::sql_types::*", "postgis_diesel::sql_types::*"]
 custom_type_derives = ["diesel::query_builder::QueryId"]
+except_custom_type_definitions = ["Geometry"]
+
 
 [migrations_directory]
 dir = "/Users/jreydman/Documents/Repositories/traffic-lights/services/core-server/src/orm/migrations"

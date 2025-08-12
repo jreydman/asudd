@@ -1,5 +1,5 @@
-pub mod commands;
-pub mod orm;
-pub mod seed;
+pub mod insert_seed;
 
 // ===========================================================================
+
+pub use insert_seed::insert_seed;

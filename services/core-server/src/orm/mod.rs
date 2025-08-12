@@ -1,5 +1,4 @@
+pub mod convertion;
 pub mod database;
-pub mod helpers;
-pub mod models;
+pub mod model;
 pub mod schema;
-pub mod seed;

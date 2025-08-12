@@ -1,15 +1,13 @@
 // @generated automatically by Diesel CLI.
 
 pub mod sql_types {
-    pub use postgis_diesel::sql_types::Geometry;
-
     #[derive(diesel::query_builder::QueryId, diesel::sql_types::SqlType)]
     #[diesel(postgres_type(name = "object_direction_definition"))]
     pub struct ObjectDirectionDefinition;
 
     #[derive(diesel::query_builder::QueryId, diesel::sql_types::SqlType)]
-    #[diesel(postgres_type(name = "object_geometry_geotype"))]
-    pub struct ObjectGeometryGeotype;
+    #[diesel(postgres_type(name = "object_geolocation_type"))]
+    pub struct ObjectGeolocationType;
 
     #[derive(diesel::query_builder::QueryId, diesel::sql_types::SqlType)]
     #[diesel(postgres_type(name = "object_signal_kind"))]
@@ -21,6 +19,9 @@ pub mod sql_types {
 }
 
 diesel::table! {
+    use diesel::sql_types::*;
+    use postgis_diesel::sql_types::*;
+
     object_crossroads (id) {
         id -> Int4,
         name -> Nullable<Text>,
@@ -28,6 +29,9 @@ diesel::table! {
 }
 
 diesel::table! {
+    use diesel::sql_types::*;
+    use postgis_diesel::sql_types::*;
+
     object_dependencies (master_id, slave_id) {
         master_id -> Int4,
         slave_id -> Int4,
@@ -36,6 +40,7 @@ diesel::table! {
 
 diesel::table! {
     use diesel::sql_types::*;
+    use postgis_diesel::sql_types::*;
     use super::sql_types::ObjectDirectionDefinition;
 
     object_directions (id) {
@@ -45,6 +50,9 @@ diesel::table! {
 }
 
 diesel::table! {
+    use diesel::sql_types::*;
+    use postgis_diesel::sql_types::*;
+
     object_gateways (id) {
         id -> Int4,
         is_inbound -> Bool,
@@ -54,19 +62,22 @@ diesel::table! {
 
 diesel::table! {
     use diesel::sql_types::*;
-    use super::sql_types::ObjectGeometryGeotype;
-    use super::sql_types::Geometry;
+    use postgis_diesel::sql_types::*;
+    use super::sql_types::ObjectGeolocationType;
 
     object_geometries (id) {
         id -> Int4,
         object_id -> Int4,
-        geotype -> ObjectGeometryGeotype,
+        geotype -> ObjectGeolocationType,
         angle -> Float8,
         figure -> Geometry,
     }
 }
 
 diesel::table! {
+    use diesel::sql_types::*;
+    use postgis_diesel::sql_types::*;
+
     object_pictures (id) {
         id -> Int4,
         object_id -> Int4,
@@ -79,6 +90,9 @@ diesel::table! {
 }
 
 diesel::table! {
+    use diesel::sql_types::*;
+    use postgis_diesel::sql_types::*;
+
     object_signal_standards (id) {
         id -> Int4,
         code -> Text,
@@ -87,6 +101,7 @@ diesel::table! {
 
 diesel::table! {
     use diesel::sql_types::*;
+    use postgis_diesel::sql_types::*;
     use super::sql_types::ObjectSignalKind;
 
     object_signals (id) {
@@ -98,6 +113,7 @@ diesel::table! {
 
 diesel::table! {
     use diesel::sql_types::*;
+    use postgis_diesel::sql_types::*;
     use super::sql_types::ObjectType;
 
     object_type_mapping (table_name) {
@@ -108,6 +124,7 @@ diesel::table! {
 
 diesel::table! {
     use diesel::sql_types::*;
+    use postgis_diesel::sql_types::*;
     use super::sql_types::ObjectType;
 
     objects (id) {
@@ -121,6 +138,9 @@ diesel::table! {
 }
 
 diesel::table! {
+    use diesel::sql_types::*;
+    use postgis_diesel::sql_types::*;
+
     spatial_ref_sys (srid) {
         srid -> Int4,
         #[max_length = 256]

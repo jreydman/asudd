@@ -8,7 +8,7 @@ CREATE TYPE OBJECT_TYPE AS ENUM (
   'gateway'
 );
 
-CREATE TYPE OBJECT_GEOMETRY_GEOTYPE AS ENUM (
+CREATE TYPE OBJECT_GEOLOCATION_TYPE AS ENUM (
   'local',
   'global'
 );
@@ -92,7 +92,7 @@ COMMENT ON COLUMN object_pictures.buffer IS 'Value as base64';
 CREATE TABLE object_geometries (
   id          SERIAL,
   object_id   INTEGER NOT NULL,
-  geotype     OBJECT_GEOMETRY_GEOTYPE NOT NULL,
+  geotype     OBJECT_GEOLOCATION_TYPE NOT NULL,
 
   angle       DOUBLE PRECISION NOT NULL DEFAULT 0,
   figure      GEOMETRY NOT NULL,

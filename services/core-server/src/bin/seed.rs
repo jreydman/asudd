@@ -1,15 +1,16 @@
-fn main() -> Result<(), Box<dyn std::error::Error>> {
-    use core_server::orm::models;
-    use core_server::orm::schema;
-    use core_server::orm::seed::schema as seed_schema;
+use core_server::{commands, orm, seed};
+use dotenvy::dotenv;
 
-    let seed_string = std::fs::read_to_string("src/orm/seed/01__seed.json")?;
+fn main() {
+    dotenv().ok();
 
-    let root: seed_schema::SeedRoot = serde_json::from_str(&seed_string)?;
+    let path = "data/seed/00__seed.json".to_owned();
+    let client = orm::database::DatabaseClient::new().unwrap();
+    let mut connection = client.get_connection().unwrap();
 
-    let mut connection = core_server::orm::database::establish_connection();
+    println!("Seed insertion started");
 
-    core_server::orm::seed::insert_seed(root, &mut connection)?;
+    commands::insert_seed(&path, &mut connection).unwrap();
 
-    Ok(())
+    println!("Seed inserted");
 }
