@@ -2,7 +2,7 @@ use thiserror::Error;
 
 // ===========================================================================
 
-#[derive(Debug, Error)]
+#[derive(Debug, thiserror::Error)]
 pub enum Error {
     #[error("IO error: {0}")]
     Io(#[from] std::io::Error),
@@ -12,6 +12,9 @@ pub enum Error {
 
     #[error("Validation error: {0}")]
     Validation(String),
+
+    #[error("Infrastructure error: {0}")]
+    Infrastructure(String),
 }
 
 // ===========================================================================

@@ -1,4 +1,10 @@
 pub mod conversions;
 pub mod entities;
+pub mod error;
 pub mod repository;
 pub mod schema;
+
+// ===========================================================================
+
+#[cfg(test)]
+mod test;

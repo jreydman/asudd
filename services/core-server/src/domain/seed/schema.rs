@@ -161,8 +161,22 @@ pub enum Object {
 
 // ===========================================================================
 
+impl Object {
+    pub fn rel_id(&self) -> u32 {
+        match self {
+            Object::Crossroad(data) => data.base.rel_id,
+            Object::Signal(data) => data.base.rel_id,
+            Object::Gateway(data) => data.base.rel_id,
+            Object::Direction(data) => data.base.rel_id,
+            Object::Unknown => 0,
+        }
+    }
+}
+
+// ===========================================================================
+
 #[derive(Debug, Deserialize, Serialize)]
-pub struct ObjectDependent {
+pub struct ObjectDependency {
     pub master_id: u32,
     #[serde(default)]
     pub slave_ids: Vec<u32>,
@@ -175,7 +189,7 @@ pub struct Seed {
     #[serde(default)]
     pub objects: Vec<Object>,
     #[serde(default)]
-    pub dependencies: Vec<ObjectDependent>,
+    pub dependencies: Vec<ObjectDependency>,
 }
 
 // ===========================================================================
