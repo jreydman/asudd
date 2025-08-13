@@ -1,1 +1,1 @@
-DROP FUNCTION public.func__truncate_tables();
+DROP FUNCTION public.func__truncate_tables;

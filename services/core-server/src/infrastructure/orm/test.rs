@@ -1,3 +1,5 @@
+// ===========================================================================
+
 use std::env;
 
 use diesel::{connection::Connection, pg::PgConnection};
@@ -12,6 +14,7 @@ use crate::{
 // ===========================================================================
 
 fn get_connection() -> PgConnection {
+    dotenv().ok();
     let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
     PgConnection::establish(&database_url).expect("Failed to connect to DB")
 }
@@ -28,7 +31,6 @@ fn connection() {
 
 #[test]
 fn insert_seed_transaction() {
-    dotenv().ok();
     let mut conn = get_connection();
 
     conn.test_transaction::<_, SeedError, _>(|connection| {

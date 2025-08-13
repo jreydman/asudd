@@ -1,5 +1,6 @@
 // ===========================================================================
 
+pub mod connection;
 pub mod conversions;
 pub mod entities;
 pub mod error;

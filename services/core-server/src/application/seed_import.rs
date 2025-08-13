@@ -1,3 +1,5 @@
+// ===========================================================================
+
 use std::{fs, path::Path};
 
 use diesel::pg::PgConnection;
@@ -28,8 +30,12 @@ impl<'a> SeedImporter<'a> {
 
         for entry in fs::read_dir(folder_path)? {
             let path = entry?.path();
+
             if path.extension().map(|ext| ext == "json").unwrap_or(false) {
+                println!("Importing seed from '{}'", path.display());
+
                 let seed = Seed::from_file(&path)?;
+
                 repo.insert(&seed)?;
             }
         }

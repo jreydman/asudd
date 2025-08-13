@@ -1,4 +1,6 @@
-use diesel::{Connection, ExpressionMethods, RunQueryDsl};
+// ===========================================================================
+
+use diesel::{Connection, ExpressionMethods, PgConnection, RunQueryDsl};
 use postgis_diesel::types as postgis_types;
 
 use crate::{

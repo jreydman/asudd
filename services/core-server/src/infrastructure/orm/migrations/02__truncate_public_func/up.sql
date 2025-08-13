@@ -1,4 +1,4 @@
-CREATE OR REPLACE FUNCTION public.func__truncate_tables()
+CREATE FUNCTION public.func__truncate_tables()
 RETURNS void AS $$
 DECLARE
   sql text;

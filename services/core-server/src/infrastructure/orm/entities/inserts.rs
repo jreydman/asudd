@@ -1,3 +1,5 @@
+// ===========================================================================
+
 use diesel::Insertable;
 
 use crate::infrastructure::orm::{entities::types, schema};

@@ -1,3 +1,4 @@
+
 -- TRIGGERS ====================================================================
 
 DROP TRIGGER trigger__set_updated_at__objects ON objects;
@@ -34,5 +35,5 @@ DROP TYPE OBJECT_SIGNAL_KIND;
 
 -- FUNCTIONS ===================================================================
 
-DROP FUNCTION tfunc__set_updated_at();
-DROP FUNCTION tfunc__validate_object_type_auto();
+DROP FUNCTION tfunc__set_updated_at;
+DROP FUNCTION tfunc__validate_object_type_auto;

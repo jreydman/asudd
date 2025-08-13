@@ -34,7 +34,7 @@ push-osm-data: clear
         --username ${DATABASE_USER} \
         --password ${DATABASE_PASSWORD} \
         --dbname ${DATABASE_NAME} \
-        -c "CREATE SCHEMA IF NOT EXISTS osm_ukraine_kyiv;"
+        -c "CREATE SCHEMA IF NOT EXISTS osm__ukraine_kyiv;"
     @osm2pgrouting \
         --file data/osm/ukraine-kyiv-latest.osm \
         --conf data/osm/mapconfig.xml \
@@ -43,5 +43,5 @@ push-osm-data: clear
         --username ${DATABASE_USER} \
         --password ${DATABASE_PASSWORD} \
         --dbname ${DATABASE_NAME} \
-        --schema osm_ukraine_kyiv \
+        --schema osm__ukraine_kyiv \
         --clean
