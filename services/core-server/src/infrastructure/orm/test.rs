@@ -9,16 +9,22 @@ use crate::{
     infrastructure::orm::repository::DieselRepository,
 };
 
+// ===========================================================================
+
 fn get_connection() -> PgConnection {
     let database_url = env::var("DATABASE_URL").expect("DATABASE_URL must be set");
     PgConnection::establish(&database_url).expect("Failed to connect to DB")
 }
+
+// ===========================================================================
 
 #[test]
 fn connection() {
     dotenv().ok();
     get_connection();
 }
+
+// ===========================================================================
 
 #[test]
 fn insert_seed_transaction() {
@@ -32,3 +38,5 @@ fn insert_seed_transaction() {
         Ok(())
     });
 }
+
+// ===========================================================================

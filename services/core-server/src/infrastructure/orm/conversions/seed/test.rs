@@ -1,3 +1,5 @@
+// ===========================================================================
+
 use std::path::PathBuf;
 
 use super::stage_converter::StagedObject;
@@ -15,3 +17,5 @@ fn staging_from_seed_file() {
 
     StagedObject::from_seed_object(first_obj).expect("Failed to stage object");
 }
+
+// ===========================================================================

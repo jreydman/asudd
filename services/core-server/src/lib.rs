@@ -1,9 +1,6 @@
-pub mod commands;
-pub mod orm;
-pub mod seed;
-
 // ===========================================================================
 
+pub mod application;
 pub mod domain;
 pub mod infrastructure;
 

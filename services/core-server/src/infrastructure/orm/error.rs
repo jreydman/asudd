@@ -3,6 +3,8 @@ use std::io;
 use diesel::result::Error as DieselError;
 use thiserror::Error;
 
+// ===========================================================================
+
 #[derive(Debug, Error)]
 pub enum RepositoryError {
     #[error("Database error: {0}")]
@@ -17,3 +19,5 @@ pub enum RepositoryError {
     #[error("Unknown error: {0}")]
     Unknown(String),
 }
+
+// ===========================================================================

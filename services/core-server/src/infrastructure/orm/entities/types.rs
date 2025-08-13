@@ -1,3 +1,5 @@
+// ===========================================================================
+
 use diesel_derive_enum::DbEnum;
 
 use crate::infrastructure::orm::schema;
