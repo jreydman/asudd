@@ -68,8 +68,6 @@ pub fn insert_seed(
         }
     }
 
-    println!("Inserted seed objects: {:?}", inserted_object_relmap);
-
     for dependency in seed.dependencies.into_iter() {
         let master_id = *inserted_object_relmap
             .get(&dependency.master_id)
@@ -88,8 +86,6 @@ pub fn insert_seed(
                 .execute(connection)?;
         }
     }
-
-    println!("Inserted seed object dependencies",);
 
     inserted_object_relmap.clear();
 

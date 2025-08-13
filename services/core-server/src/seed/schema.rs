@@ -24,6 +24,15 @@ mod defaults {
 
 // ===========================================================================
 
+pub enum ObjectProperties {
+    Crossroad(CrossroadProperties),
+    Signal(SignalProperties),
+    Gateway(GatewayProperties),
+    Direction(DirectionProperties),
+}
+
+// ===========================================================================
+
 #[derive(Deserialize, Serialize, Debug, Clone)]
 pub struct Seed {
     #[serde(default)]
@@ -181,6 +190,16 @@ pub enum Object {
     Gateway(Box<GatewayData>),
     #[serde(rename = "direction")]
     Direction(Box<DirectionData>),
+}
+
+// ===========================================================================
+
+pub struct ObjectData {
+    pub rel_id: u32,
+    pub attributes: serde_json::Value,
+    pub is_active: bool,
+    pub geometries: Vec<Geometry>,
+    pub pictures: Vec<Picture>,
 }
 
 // ===========================================================================
